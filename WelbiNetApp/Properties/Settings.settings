@@ -1,0 +1,27 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="WelbiNetApp.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="START_ENDPOINT" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://welbi.org/api/start</Value>
+    </Setting>
+    <Setting Name="RESIDENTS_ENDPOINT" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://welbi.org/api/residents?token={0}</Value>
+    </Setting>
+    <Setting Name="PROGRAMS_ENDPOINT" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://welbi.org/api/programs?token={0}</Value>
+    </Setting>
+    <Setting Name="EMAIL" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">calbertorivera@hotmail.com</Value>
+    </Setting>
+    <Setting Name="LOGIN_USER" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">welbi</Value>
+    </Setting>
+    <Setting Name="LOGIN_PASSWORD" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">SlU0TlMzMTk4OQ==</Value>
+    </Setting>
+    <Setting Name="REGISTER_ATTENDEE_ENDPOINT" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://welbi.org/api/programs/{0}/attend?token={1}</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

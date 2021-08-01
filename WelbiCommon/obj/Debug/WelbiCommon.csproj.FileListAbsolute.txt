@@ -1,0 +1,8 @@
+C:\Users\CAlbe\source\repos\WelbiCommon\bin\Debug\WelbiCommon.dll
+C:\Users\CAlbe\source\repos\WelbiCommon\bin\Debug\WelbiCommon.pdb
+C:\Users\CAlbe\source\repos\WelbiCommon\obj\Debug\WelbiCommon.csproj.CoreCompileInputs.cache
+C:\Users\CAlbe\source\repos\WelbiCommon\obj\Debug\WelbiCommon.dll
+C:\Users\CAlbe\source\repos\WelbiCommon\obj\Debug\WelbiCommon.pdb
+C:\Users\CAlbe\source\repos\WelbiCommon\bin\Debug\Newtonsoft.Json.dll
+C:\Users\CAlbe\source\repos\WelbiCommon\bin\Debug\Newtonsoft.Json.xml
+C:\Users\CAlbe\source\repos\WelbiCommon\obj\Debug\WelbiCommon.csproj.CopyComplete

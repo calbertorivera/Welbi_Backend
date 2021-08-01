@@ -1,0 +1,11 @@
+C:\Users\CAlbe\source\repos\WelbiBackend\bin\Debug\WelbiBackend.dll
+C:\Users\CAlbe\source\repos\WelbiBackend\bin\Debug\WelbiBackend.pdb
+C:\Users\CAlbe\source\repos\WelbiBackend\bin\Debug\Newtonsoft.Json.dll
+C:\Users\CAlbe\source\repos\WelbiBackend\bin\Debug\WelbiCommon.dll
+C:\Users\CAlbe\source\repos\WelbiBackend\bin\Debug\WelbiCommon.pdb
+C:\Users\CAlbe\source\repos\WelbiBackend\bin\Debug\Newtonsoft.Json.xml
+C:\Users\CAlbe\source\repos\WelbiBackend\obj\Debug\WelbiBackend.csprojAssemblyReference.cache
+C:\Users\CAlbe\source\repos\WelbiBackend\obj\Debug\WelbiBackend.csproj.CoreCompileInputs.cache
+C:\Users\CAlbe\source\repos\WelbiBackend\obj\Debug\WelbiBackend.csproj.CopyComplete
+C:\Users\CAlbe\source\repos\WelbiBackend\obj\Debug\WelbiBackend.dll
+C:\Users\CAlbe\source\repos\WelbiBackend\obj\Debug\WelbiBackend.pdb
