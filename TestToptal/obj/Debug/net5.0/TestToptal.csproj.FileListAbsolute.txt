@@ -1,0 +1,16 @@
+C:\Users\CAlbe\source\repos\TestToptal\bin\Debug\net5.0\TestToptal.exe
+C:\Users\CAlbe\source\repos\TestToptal\bin\Debug\net5.0\TestToptal.deps.json
+C:\Users\CAlbe\source\repos\TestToptal\bin\Debug\net5.0\TestToptal.runtimeconfig.json
+C:\Users\CAlbe\source\repos\TestToptal\bin\Debug\net5.0\TestToptal.runtimeconfig.dev.json
+C:\Users\CAlbe\source\repos\TestToptal\bin\Debug\net5.0\TestToptal.dll
+C:\Users\CAlbe\source\repos\TestToptal\bin\Debug\net5.0\ref\TestToptal.dll
+C:\Users\CAlbe\source\repos\TestToptal\bin\Debug\net5.0\TestToptal.pdb
+C:\Users\CAlbe\source\repos\TestToptal\obj\Debug\net5.0\TestToptal.csprojAssemblyReference.cache
+C:\Users\CAlbe\source\repos\TestToptal\obj\Debug\net5.0\TestToptal.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\CAlbe\source\repos\TestToptal\obj\Debug\net5.0\TestToptal.AssemblyInfoInputs.cache
+C:\Users\CAlbe\source\repos\TestToptal\obj\Debug\net5.0\TestToptal.AssemblyInfo.cs
+C:\Users\CAlbe\source\repos\TestToptal\obj\Debug\net5.0\TestToptal.csproj.CoreCompileInputs.cache
+C:\Users\CAlbe\source\repos\TestToptal\obj\Debug\net5.0\TestToptal.dll
+C:\Users\CAlbe\source\repos\TestToptal\obj\Debug\net5.0\ref\TestToptal.dll
+C:\Users\CAlbe\source\repos\TestToptal\obj\Debug\net5.0\TestToptal.pdb
+C:\Users\CAlbe\source\repos\TestToptal\obj\Debug\net5.0\TestToptal.genruntimeconfig.cache
