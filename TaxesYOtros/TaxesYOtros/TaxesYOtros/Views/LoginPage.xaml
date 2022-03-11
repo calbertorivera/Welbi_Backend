@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="TaxesYOtros.Views.LoginPage"
+             Shell.NavBarIsVisible="False">
+    <ContentPage.Content>
+        <Grid ColumnSpacing="0" BackgroundColor="{StaticResource TaxesYOtrosRedColor}" Margin="0" RowSpacing="0" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150" />
+                <RowDefinition Height="100" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="80" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />            
+            </Grid.ColumnDefinitions>
+            <StackLayout Grid.Row="0" Orientation="Vertical"  Padding="0,60,0,0"   >              
+                <Image HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="300"  Source="logo.png"/>
+            </StackLayout>
+            <Label BackgroundColor="white" Grid.Row="1"  Text="Ingrese con su correo electronico" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" TextColor="red" FontAttributes="Bold" FontSize="Large"></Label>
+            <StackLayout  Grid.Row="2"  Orientation="Vertical" Padding="30,0,30,0" BackgroundColor="White" Spacing="10">
+                <Entry FontSize="Large" x:Name="Email" Placeholder="Ingrese aquí su correo"   
+                            HeightRequest="40"   
+                           Keyboard="Email"  
+                           />
+                <Entry FontSize="Large"  x:Name="Password"  Placeholder="Ingrese su contraseña"   
+                            HeightRequest="40"   
+                           IsPassword="True"  
+                           />
+                <Button Margin="0,20,0,0" Command="{Binding LoginCommand}" Text="Ingresar" TextColor="White"  
+                    FontAttributes="Bold" FontSize="Large" HorizontalOptions="FillAndExpand"  
+                    BackgroundColor="{StaticResource TaxesYOtrosRedColor}" />
+            </StackLayout>
+            <Button  Grid.Row="3"  Command="{Binding RegisterCommand}" Text="Desea Registrarse? Registrese aquí" TextColor="White"  
+                    FontAttributes="Bold" FontSize="Medium" HorizontalOptions="FillAndExpand"  
+                    BackgroundColor="{StaticResource TaxesYOtrosGreenColor}" />
+            
+            
+        </Grid>
+       
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "FIi5b9S8Bpki1kFsMD9n+wFyx96UomKH/TF7GXTeg3TbCxxDH+/cPKr3xLq7dmt4datj88G/lQvHyUe5DFDW9w==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\CAlbe\\source\\repos\\TaxesYOtros\\TaxesYOtros\\TaxesYOtros.iOS\\TaxesYOtros.iOS.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\CAlbe\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
+    "C:\\Users\\CAlbe\\.nuget\\packages\\xamarin.essentials\\1.7.1\\xamarin.essentials.1.7.1.nupkg.sha512",
+    "C:\\Users\\CAlbe\\.nuget\\packages\\xamarin.forms\\5.0.0.2337\\xamarin.forms.5.0.0.2337.nupkg.sha512"
+  ],
+  "logs": []
+}
