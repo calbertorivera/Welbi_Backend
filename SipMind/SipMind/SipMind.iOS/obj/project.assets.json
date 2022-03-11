@@ -1008,7 +1008,8 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {},
+        "https://nuget.devexpress.com/lo9wFmqZoD2A5rb7bADJewEsfQEi3Wo6Hw6iMRIOdVsOMtmncA/api": {}
       },
       "frameworks": {
         "xamarinios10": {

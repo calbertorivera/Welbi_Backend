@@ -1,0 +1,16 @@
+C:\Users\CAlbe\source\repos\Toptal\Toptal\bin\Debug\net5.0\Toptal.exe
+C:\Users\CAlbe\source\repos\Toptal\Toptal\bin\Debug\net5.0\Toptal.deps.json
+C:\Users\CAlbe\source\repos\Toptal\Toptal\bin\Debug\net5.0\Toptal.runtimeconfig.json
+C:\Users\CAlbe\source\repos\Toptal\Toptal\bin\Debug\net5.0\Toptal.runtimeconfig.dev.json
+C:\Users\CAlbe\source\repos\Toptal\Toptal\bin\Debug\net5.0\Toptal.dll
+C:\Users\CAlbe\source\repos\Toptal\Toptal\bin\Debug\net5.0\ref\Toptal.dll
+C:\Users\CAlbe\source\repos\Toptal\Toptal\bin\Debug\net5.0\Toptal.pdb
+C:\Users\CAlbe\source\repos\Toptal\Toptal\obj\Debug\net5.0\Toptal.csproj.AssemblyReference.cache
+C:\Users\CAlbe\source\repos\Toptal\Toptal\obj\Debug\net5.0\Toptal.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\CAlbe\source\repos\Toptal\Toptal\obj\Debug\net5.0\Toptal.AssemblyInfoInputs.cache
+C:\Users\CAlbe\source\repos\Toptal\Toptal\obj\Debug\net5.0\Toptal.AssemblyInfo.cs
+C:\Users\CAlbe\source\repos\Toptal\Toptal\obj\Debug\net5.0\Toptal.csproj.CoreCompileInputs.cache
+C:\Users\CAlbe\source\repos\Toptal\Toptal\obj\Debug\net5.0\Toptal.dll
+C:\Users\CAlbe\source\repos\Toptal\Toptal\obj\Debug\net5.0\ref\Toptal.dll
+C:\Users\CAlbe\source\repos\Toptal\Toptal\obj\Debug\net5.0\Toptal.pdb
+C:\Users\CAlbe\source\repos\Toptal\Toptal\obj\Debug\net5.0\Toptal.genruntimeconfig.cache
