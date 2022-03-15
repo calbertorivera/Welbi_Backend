@@ -79,6 +79,7 @@ C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros.Android\obj\Debu
 C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros.Android\obj\Debug\120\android\assets\mscorlib.dll
 C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros.Android\obj\Debug\120\android\assets\mscorlib.pdb
 C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros.Android\obj\Debug\120\android\assets\netstandard.dll
+C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros.Android\obj\Debug\120\android\assets\Newtonsoft.Json.dll
 C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros.Android\obj\Debug\120\android\assets\RestSharp.dll
 C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros.Android\obj\Debug\120\android\assets\System.Buffers.dll
 C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros.Android\obj\Debug\120\android\assets\System.ComponentModel.Composition.dll

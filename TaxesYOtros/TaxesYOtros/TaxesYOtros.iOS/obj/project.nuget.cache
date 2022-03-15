@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "Em1Qm0dll7nCaYsCK1/qvO5uFXMNAhwTV+uy121K36TQCC5jhxx2P/kHLcBgOFcxtplQgparTRrjm+JjV0azVg==",
+  "dgSpecHash": "1NJzVJHmrbkG+KPfh4jA5ucODOoeOG+z75eSamWZKrNDPkEB/6lB7osik6bb08HJ66KMxcsntxTlqjElWf2WIQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\CAlbe\\source\\repos\\TaxesYOtros\\TaxesYOtros\\TaxesYOtros.iOS\\TaxesYOtros.iOS.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\CAlbe\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\5.0.0\\microsoft.bcl.asyncinterfaces.5.0.0.nupkg.sha512",
+    "C:\\Users\\CAlbe\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\CAlbe\\.nuget\\packages\\restsharp\\107.3.0\\restsharp.107.3.0.nupkg.sha512",
     "C:\\Users\\CAlbe\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\CAlbe\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",

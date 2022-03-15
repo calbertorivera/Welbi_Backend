@@ -5,7 +5,22 @@
       "ProjectGuid": "5e1b1012-8aeb-4794-bd04-39a465303794",
       "DisplayName": "TaxesYOtros",
       "ColorIndex": 0
+    },
+    "4cb6d4cf-64b3-47a2-aa9c-e28b0101f33d": {
+      "ProjectGuid": "4cb6d4cf-64b3-47a2-aa9c-e28b0101f33d",
+      "DisplayName": "TaxesYOtros.iOS",
+      "ColorIndex": 1
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    },
+    "912aa3db-1b99-4bde-ae52-7897f22162d0": {
+      "ProjectGuid": "912aa3db-1b99-4bde-ae52-7897f22162d0",
+      "DisplayName": "TaxesYOtros.Android",
+      "ColorIndex": 2
     }
   },
-  "NextColorIndex": 1
+  "NextColorIndex": 3
 }
