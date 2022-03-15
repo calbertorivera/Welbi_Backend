@@ -1,10 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "dhcSv7N/vx7XtbuFNCZyAzo1Nd2bdV79NO24P9tkrxVroyjPTz3WHN0Z6fER/WsB2V02O+sib4zPUo+b7NWn/g==",
+  "dgSpecHash": "ptzcwgMFdOqvw2Fl51kSjs6yDpz1+4acTsD4t78yIRVnltOFhAtQj8vvlZ8qNWN/FNe2aRn5s8/CV3ybg6//3Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\CAlbe\\source\\repos\\TaxesYOtros\\TaxesYOtros\\TaxesYOtros.Android\\TaxesYOtros.Android.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\CAlbe\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\5.0.0\\microsoft.bcl.asyncinterfaces.5.0.0.nupkg.sha512",
+    "C:\\Users\\CAlbe\\.nuget\\packages\\restsharp\\107.3.0\\restsharp.107.3.0.nupkg.sha512",
+    "C:\\Users\\CAlbe\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\CAlbe\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
+    "C:\\Users\\CAlbe\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\5.0.0\\system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512",
+    "C:\\Users\\CAlbe\\.nuget\\packages\\system.text.encodings.web\\5.0.0\\system.text.encodings.web.5.0.0.nupkg.sha512",
+    "C:\\Users\\CAlbe\\.nuget\\packages\\system.text.json\\5.0.0\\system.text.json.5.0.0.nupkg.sha512",
     "C:\\Users\\CAlbe\\.nuget\\packages\\xamarin.androidx.activity\\1.2.4.1\\xamarin.androidx.activity.1.2.4.1.nupkg.sha512",
     "C:\\Users\\CAlbe\\.nuget\\packages\\xamarin.androidx.annotation\\1.2.0.1\\xamarin.androidx.annotation.1.2.0.1.nupkg.sha512",
     "C:\\Users\\CAlbe\\.nuget\\packages\\xamarin.androidx.annotation.experimental\\1.1.0.1\\xamarin.androidx.annotation.experimental.1.1.0.1.nupkg.sha512",

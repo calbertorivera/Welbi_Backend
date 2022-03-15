@@ -1,10 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "FIi5b9S8Bpki1kFsMD9n+wFyx96UomKH/TF7GXTeg3TbCxxDH+/cPKr3xLq7dmt4datj88G/lQvHyUe5DFDW9w==",
+  "dgSpecHash": "Em1Qm0dll7nCaYsCK1/qvO5uFXMNAhwTV+uy121K36TQCC5jhxx2P/kHLcBgOFcxtplQgparTRrjm+JjV0azVg==",
   "success": true,
   "projectFilePath": "C:\\Users\\CAlbe\\source\\repos\\TaxesYOtros\\TaxesYOtros\\TaxesYOtros.iOS\\TaxesYOtros.iOS.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\CAlbe\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\5.0.0\\microsoft.bcl.asyncinterfaces.5.0.0.nupkg.sha512",
+    "C:\\Users\\CAlbe\\.nuget\\packages\\restsharp\\107.3.0\\restsharp.107.3.0.nupkg.sha512",
+    "C:\\Users\\CAlbe\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\CAlbe\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
+    "C:\\Users\\CAlbe\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\5.0.0\\system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512",
+    "C:\\Users\\CAlbe\\.nuget\\packages\\system.text.encodings.web\\5.0.0\\system.text.encodings.web.5.0.0.nupkg.sha512",
+    "C:\\Users\\CAlbe\\.nuget\\packages\\system.text.json\\5.0.0\\system.text.json.5.0.0.nupkg.sha512",
     "C:\\Users\\CAlbe\\.nuget\\packages\\xamarin.essentials\\1.7.1\\xamarin.essentials.1.7.1.nupkg.sha512",
     "C:\\Users\\CAlbe\\.nuget\\packages\\xamarin.forms\\5.0.0.2337\\xamarin.forms.5.0.0.2337.nupkg.sha512"
   ],

@@ -4,6 +4,10 @@ public class MonoPackageManager_Resources {
 		/* We need to ensure that "TaxesYOtros.Android.dll" comes first in this list. */
 		"TaxesYOtros.Android.dll",
 		"FormsViewGroup.dll",
+		"Microsoft.Bcl.AsyncInterfaces.dll",
+		"RestSharp.dll",
+		"System.Text.Encodings.Web.dll",
+		"System.Text.Json.dll",
 		"TaxesYOtros.dll",
 		"Xamarin.AndroidX.Activity.dll",
 		"Xamarin.AndroidX.Annotation.dll",

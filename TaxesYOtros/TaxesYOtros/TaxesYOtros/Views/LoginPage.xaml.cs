@@ -18,6 +18,7 @@ namespace TaxesYOtros.Views
             this.BindingContext = new LoginViewModel();
         }
 
+
        
     }
 }

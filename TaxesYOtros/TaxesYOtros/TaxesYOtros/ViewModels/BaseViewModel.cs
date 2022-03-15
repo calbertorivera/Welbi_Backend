@@ -2,14 +2,20 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using TaxesYOtros.Classes;
 using TaxesYOtros.Models;
 using TaxesYOtros.Services;
 using Xamarin.Forms;
 
 namespace TaxesYOtros.ViewModels
 {
-    public class BaseViewModel : INotifyPropertyChanged
+    public class BaseViewModel : ExtendedBindableObject, INotifyPropertyChanged
     {
+        public BaseViewModel(string trackPrefix = null)
+            : base(trackPrefix)
+        {
+        }
+
         public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
 
         bool isBusy = false;
