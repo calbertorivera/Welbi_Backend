@@ -21,9 +21,9 @@ namespace TaxesYOtros.ViewModels
         {
             base.ExecuteMethod("LoginViewModel", delegate ()
             {
-                this._userService = DependencyService.Get<IUserService>();
-                this._email = new ValidatableObject<string>();
-                this._password = new ValidatableObject<string>();
+                this.userService = DependencyService.Get<IUserService>();
+                this.email = new ValidatableObject<string>();
+                this.password = new ValidatableObject<string>();
                 AddValidations();
 
                 Email.Value = "calbertorivera@hotmail.com";
@@ -31,93 +31,106 @@ namespace TaxesYOtros.ViewModels
 
             });
 
-         
+
 
             LoginCommand = new Command(OnLoginClicked);
-
+            RegisterCommand = new Command(OnRegisterClicked);
         }
+
+
         #endregion
 
         #region Private properties  
-        private ValidatableObject<string> _email;
-        private ValidatableObject<string> _password;
-        private string _emailError;
-        private string _passwordError;
-        private IUserService _userService;
+        private ValidatableObject<string> email;
+        private ValidatableObject<string> password;
+        private string emailError;
+        private string loginError;
+        private string passwordError;
+        private IUserService userService;
         IDevice device;
         #endregion
 
         #region Public properties
+
+
         public ValidatableObject<string> Email
         {
-            get
-            {
-                return _email;
-            }
-            set
-            {
-                _email = value;
-                RaisePropertyChanged(() => Email);
-            }
+            get => email;
+            set => SetProperty(ref email, value);
         }
 
         public ValidatableObject<string> Password
         {
-            get
-            {
-                return _password;
-            }
-            set
-            {
-                _password = value;
-                RaisePropertyChanged(() => Password);
-            }
+            get => password;
+            set => SetProperty(ref password, value);
         }
 
         public string EmailError
         {
-            get => _emailError;
-            set => SetProperty(ref _emailError, value);
+            get => emailError;
+            set => SetProperty(ref emailError, value);
         }
+
+        public string LoginError
+        {
+            get => loginError;
+            set => SetProperty(ref loginError, value);
+        }
+
 
         public string PasswordError
         {
-            get => _passwordError;
-            set => SetProperty(ref _passwordError, value);
+            get => passwordError;
+            set => SetProperty(ref passwordError, value);
         }
         #endregion
 
         #region Commands
         public ICommand ValidateEmailCommand => new Command(() =>
-        {           
-            EmailError = !_email.HasValidData()?_email.Errors.FirstOrDefault():"";            
+        {
+            EmailError = !email.HasValidData() ? email.Errors.FirstOrDefault() : "";
         });
+
+        public ICommand ForgotPasswordCommand => new Command(async () => await ForgotPasswordAsync());
 
         public ICommand ValidatePasswordCommand => new Command(() =>
         {
-            PasswordError = !_password.HasValidData()? _password.Errors.FirstOrDefault():"";
-           
+            PasswordError = !password.HasValidData() ? password.Errors.FirstOrDefault() : "";
+
         });
         public Command LoginCommand { get; }
+        public ICommand TapCommand { get; set; }
+        public ICommand RegisterCommand { get; set; }
         #endregion
 
         #region Protected methods
+
+        protected async Task ForgotPasswordAsync()
+        {
+            App.Current.MainPage = new ForgotPassword();
+        }
+
+       
         protected void AddValidations()
         {
-            _email.Validations.Add(new IsNotNullOrEmptyRule<string>
+            email.Validations.Add(new IsNotNullOrEmptyRule<string>
             {
                 ValidationMessage = "El correo electronico es requerido"
             });
-            _email.Validations.Add(new EmailRule<string>
+            email.Validations.Add(new EmailRule<string>
             {
                 ValidationMessage = "El correo electronico no es valido"
             });
-            _password.Validations.Add(new IsNotNullOrEmptyRule<string>
+            password.Validations.Add(new IsNotNullOrEmptyRule<string>
             {
                 ValidationMessage = "La contraseña es requerida"
             });
         }
 
+        private async void OnRegisterClicked()
+        {
+            App.Current.MainPage = new Register();
+        }
 
         private async void OnLoginClicked(object obj)
         {
@@ -128,7 +141,7 @@ namespace TaxesYOtros.ViewModels
 
                     device = DependencyService.Get<IDevice>();
                     string Identifier = device.GetIdentifier();
-                    LoginResponse response = await _userService.LoginAsync(_email.Value, _password.Value, Identifier);
+                    LoginResponse response = await userService.LoginAsync(email.Value, password.Value, Identifier);
 
                     if (response.message == "OK")
                     {
@@ -136,7 +149,22 @@ namespace TaxesYOtros.ViewModels
                         Application.Current.MainPage = new AppShell();
                         await Shell.Current.GoToAsync($"//{nameof(AboutPage)}");
                     }
-                   
+                    else if (response.message == "OTP_SENT")
+                    {
+                        await Xamarin.Essentials.SecureStorage.SetAsync("emailOTP", Email.Value);
+
+                        App.Current.MainPage = new LoginPageOTPValidation();
+                    }
+                    else if (response.message == "CREDENCIALES_INCORRECTAS")
+                    {
+                        LoginError = "El email no es correcto, por favor revise.";
+
+                    }
+                    else
+                    {
+                        LoginError = "Hubo un error, por favor inténtelo más tarde";
+
+                    }
                 }
             });
 
@@ -147,19 +175,19 @@ namespace TaxesYOtros.ViewModels
 
             bool isValidUser = ValidateUserName();
             bool isValidPassword = ValidatePassword();
-           
+
             return isValidUser && isValidPassword;
 
         }
 
         private bool ValidateUserName()
         {
-            return _email.HasValidData();
+            return email.HasValidData();
         }
 
         private bool ValidatePassword()
         {
-            return _password.HasValidData();
+            return password.HasValidData();
         }
         #endregion
 

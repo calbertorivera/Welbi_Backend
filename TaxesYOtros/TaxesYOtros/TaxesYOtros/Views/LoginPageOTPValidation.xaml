@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:behaviors="clr-namespace:TaxesYOtros.Behaviors"
+             x:Class="TaxesYOtros.Views.LoginPageOTPValidation"
+              xmlns:vm="clr-namespace:TaxesYOtros.ViewModels"
+              Shell.NavBarIsVisible="False">
+    <ContentPage.BindingContext>
+        <vm:LoginPageOTPValidationViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+
+
+        <Grid ColumnSpacing="0" BackgroundColor="{StaticResource TaxesYOtrosRedColor}" Margin="0" RowSpacing="0" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="80" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <StackLayout Grid.Row="0" Orientation="Vertical"  Padding="0,60,0,0"   >
+                <Image HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="300"  Source="logo.png"/>
+            </StackLayout>
+            <ScrollView  Grid.Row="1" Orientation="Vertical" Padding="30,10,30,0" BackgroundColor="White">
+                <StackLayout  Spacing="5">
+                    <Label BackgroundColor="white" Grid.Row="1"  Text="Hemos enviado un código a su correo electrónico y celular. Por favor, ingréselo a continuación para acceder a su información:" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" TextColor="black" FontAttributes="Bold" FontSize="Large"></Label>
+
+                    <Entry FontSize="Large" Margin="0,20,0,0" x:Name="Code" Placeholder="Ingrese aquí el código"   
+                           
+                           Keyboard="Default" Text="{Binding Code.Value, Mode=TwoWay}">
+                        <Entry.Behaviors>
+                            <behaviors:EventToCommandBehavior EventName="Unfocused" Command="{Binding ValidateCodeCommand}" />
+                        </Entry.Behaviors>
+
+                    </Entry>
+                    <Label  Text="{Binding CodeError, Mode=TwoWay}" TextColor="{StaticResource TaxesYOtrosRedColor}" FontAttributes="Bold"></Label>
+                    <Label  Text="{Binding LoginError, Mode=TwoWay}" TextColor="{StaticResource TaxesYOtrosRedColor}" FontAttributes="Bold"></Label>
+
+
+
+                    <Button Margin="0,10,0,0" Command="{Binding ValidateCodeOnClickCommand}" Text="Ingresar" TextColor="White"  
+                    FontAttributes="Bold" FontSize="Large" HorizontalOptions="FillAndExpand"  
+                    BackgroundColor="{StaticResource TaxesYOtrosRedColor}" />
+
+
+
+
+                </StackLayout>
+            </ScrollView>
+            <Button Grid.Row="2" Padding="0,0,0,10" Command="{Binding LoginCommand}" Text="Intenta ingresar sesión de nuevo" TextColor="White"  
+                    FontAttributes="Bold" FontSize="Large" HorizontalOptions="FillAndExpand"  
+                    BackgroundColor="{StaticResource TaxesYOtrosGreenColor}" />
+
+
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>

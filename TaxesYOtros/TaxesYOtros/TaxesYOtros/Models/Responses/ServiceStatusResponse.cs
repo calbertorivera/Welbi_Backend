@@ -8,6 +8,6 @@ namespace TaxesYOtros.Models.Responses
     {
         public string message { get; set; }
         public bool status { get; set; }
-        public string token { get; set; }
+        public string token { get; set; } 
     }
 }

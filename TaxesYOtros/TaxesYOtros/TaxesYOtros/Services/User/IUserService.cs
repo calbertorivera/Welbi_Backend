@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using TaxesYOtros.Classes;
 using TaxesYOtros.Models;
 using TaxesYOtros.Models.Responses;
 
@@ -10,9 +11,10 @@ namespace TaxesYOtros.Services.User
     public interface IUserService
     {
         Task<LoginResponse> LoginAsync(string username, string password, string deviceId);
-        //Task<UserData> RegistrationAsync(string username, string password);
-        //Task<UserData> UpdateUser(UserData currentUser);
-        //Task<BasicResponse> SavePushNotificationTokenAsync(UserData response, string fCMToken);
-        //Task<BasicResponse> ForgotPassword(string value, string step, string resetKey, string password);
+        Task<LoginResponse> ConfirmOTPAsync(string email, IDevice device, string value);
+        Task<ServiceStatusResponse> ForgotPasswordAsync(string value);
+        Task<ServiceStatusResponse> ResetPasswordAsync(string username, string password, string token);
+        Task<RegistrationResponse> RegisterAsync(string value1, string value2, string value3, string value4, string value5, string value6, string value7);
+ 
     }
 }

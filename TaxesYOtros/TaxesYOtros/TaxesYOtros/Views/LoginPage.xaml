@@ -4,15 +4,19 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:behaviors="clr-namespace:TaxesYOtros.Behaviors" xmlns:local="clr-namespace:TaxesYOtros.Classes"
              mc:Ignorable="d"
+             xmlns:l="clr-namespace:TaxesYOtros.ViewModels"
              x:Class="TaxesYOtros.Views.LoginPage"
-             Shell.NavBarIsVisible="False">
+             Shell.NavBarIsVisible="False"
+             x:Name="LoginPg"
+             >
     <ContentPage.Content>
+
         <Grid ColumnSpacing="0" BackgroundColor="{StaticResource TaxesYOtrosRedColor}" Margin="0" RowSpacing="0" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="150" />
                 <RowDefinition Height="100" />
                 <RowDefinition Height="*" />
-                <RowDefinition Height="80" />
+                <RowDefinition Height="70" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -21,31 +25,65 @@
                 <Image HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="300"  Source="logo.png"/>
             </StackLayout>
             <Label BackgroundColor="white" Grid.Row="1"  Text="Ingrese con su correo electronico" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" TextColor="red" FontAttributes="Bold" FontSize="Large"></Label>
-            <StackLayout  Grid.Row="2"  Orientation="Vertical" Padding="30,0,30,0" BackgroundColor="White" Spacing="10">
-                <Entry FontSize="Large" x:Name="Email" Placeholder="Ingrese aquí su correo"   
-                            HeightRequest="40"   
+            <ScrollView  Grid.Row="2" Orientation="Vertical" Padding="30,0,30,0" BackgroundColor="White">
+                <StackLayout  Spacing="5">
+                    <Entry FontSize="Large" x:Name="Email" Placeholder="Ingrese aquí su correo"   
+                           
                            Keyboard="Email" Text="{Binding Email.Value, Mode=TwoWay}">
-                    <Entry.Behaviors>
-                        <behaviors:EventToCommandBehavior EventName="Unfocused" Command="{Binding ValidateEmailCommand}" />
-                    </Entry.Behaviors>
-                 
-                </Entry>
-                <Label  Text="{Binding EmailError, Mode=TwoWay}" TextColor="{StaticResource TaxesYOtrosRedColor}" FontAttributes="Bold"></Label>
-                <Entry FontSize="Large"  x:Name="Password" Text="{Binding Password.Value, Mode=TwoWay}"  Placeholder="Ingrese su contraseña"   
-                            HeightRequest="40"   
-                           IsPassword="True">
-                    <Entry.Behaviors>
-                        <behaviors:EventToCommandBehavior EventName="Unfocused" Command="{Binding ValidatePasswordCommand}" />
-                    </Entry.Behaviors>
-                  
-                </Entry>
-                <Label  Text="{Binding PasswordError, Mode=TwoWay}" TextColor="{StaticResource TaxesYOtrosRedColor}" FontAttributes="Bold"></Label>
+                        <Entry.Behaviors>
+                            <behaviors:EventToCommandBehavior EventName="Unfocused" Command="{Binding ValidateEmailCommand}" />
+                        </Entry.Behaviors>
 
-                <Button Margin="0,20,0,0" Command="{Binding LoginCommand}" Text="Ingresar" TextColor="White"  
+                    </Entry>
+                    <Label  Text="{Binding EmailError, Mode=TwoWay}" TextColor="{StaticResource TaxesYOtrosRedColor}" FontAttributes="Bold"></Label>
+                    <Entry FontSize="Large"  x:Name="Password" Text="{Binding Password.Value, Mode=TwoWay}"  Placeholder="Ingrese su contraseña"   
+                           
+                           IsPassword="True">
+                        <Entry.Behaviors>
+                            <behaviors:EventToCommandBehavior EventName="Unfocused" Command="{Binding ValidatePasswordCommand}" />
+                        </Entry.Behaviors>
+
+                    </Entry>
+                    <Label  Text="{Binding PasswordError, Mode=TwoWay}" TextColor="{StaticResource TaxesYOtrosRedColor}" FontAttributes="Bold"></Label>
+
+                    <Label  Text="{Binding LoginError, Mode=TwoWay}" TextColor="{StaticResource TaxesYOtrosRedColor}" FontAttributes="Bold"></Label>
+
+                    <Button Margin="0,0,0,0" Command="{Binding LoginCommand}" Text="Ingresar" TextColor="White"  
                     FontAttributes="Bold" FontSize="Large" HorizontalOptions="FillAndExpand"  
                     BackgroundColor="{StaticResource TaxesYOtrosRedColor}" />
-            </StackLayout>
-            <Button  Grid.Row="3"  Command="{Binding RegisterCommand}" Text="Desea Registrarse? Registrese aquí" TextColor="White"  
+
+
+                    <!--<StackLayout>
+                    <Label HorizontalOptions="Center"  x:Name="ForgotPasswordLabel"
+       TextColor="{StaticResource TaxesYOtrosGreenColor}"
+                       FontAttributes="Bold"
+       Margin="0,20,0,0">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Olvidó su contraseña, " TextColor="Black"/>
+                                <Span Text="haga click aquí?" TextColor="{StaticResource TaxesYOtrosGreenColor}"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                        <Label.Behaviors>
+                            <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding ForgotPasswordCommand}" />
+                        </Label.Behaviors>
+                    </Label>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer 
+                                NumberOfTapsRequired="1"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type l:LoginViewModel}}, Path=ForgotPasswordCommand}"		
+                                CommandParameter="{Binding .}">
+                        </TapGestureRecognizer>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>-->
+
+
+                    <Button Margin="0,20,0,0" BackgroundColor="white" Command="{Binding ForgotPasswordCommand}" Text="Olvidó su contraseña, haga click aquí?" TextColor="{StaticResource TaxesYOtrosGreenColor}"  
+                    FontAttributes="Bold" FontSize="Large" HorizontalOptions="FillAndExpand"  
+                     />
+                </StackLayout>
+            </ScrollView>
+            <Button  Grid.Row="3" Padding="0,0,0,10"  Command="{Binding RegisterCommand}" Text="Desea Registrarse? Registrese aquí" TextColor="White"  
                     FontAttributes="Bold" FontSize="Medium" HorizontalOptions="FillAndExpand"  
                     BackgroundColor="{StaticResource TaxesYOtrosGreenColor}" />
 

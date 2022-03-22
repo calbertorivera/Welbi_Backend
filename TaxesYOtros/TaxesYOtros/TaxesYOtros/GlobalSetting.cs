@@ -41,9 +41,18 @@ namespace TaxesYOtros
         }
 
         public string LoginEndpoint { get; set; }
+        public string ForgotPasswordEndpoint { get; set; }
+        public string ConfirmOTPEndpoint { get; set; }
+        public string ResetPasswordEndpoint { get;  set; }
+        public string RegisterPasswordEndpoint { get;  set; }
+
         private void UpdateEndpoint(string baseEndpoint)
         {
             LoginEndpoint = $"{baseEndpoint}/login.php";
+            ConfirmOTPEndpoint = $"{baseEndpoint}/login2.php";
+            ForgotPasswordEndpoint = $"{baseEndpoint}/forgotPassword.php";
+            ResetPasswordEndpoint = $"{baseEndpoint}/resetPassword.php";
+            RegisterPasswordEndpoint = $"{baseEndpoint}/register.php";
         }
 
             #endregion

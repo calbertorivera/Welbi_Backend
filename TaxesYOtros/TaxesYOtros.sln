@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxesYOtros.Android", "Taxe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxesYOtros.iOS", "TaxesYOtros\TaxesYOtros.iOS\TaxesYOtros.iOS.csproj", "{4CB6D4CF-64B3-47A2-AA9C-E28B0101F33D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxesYOtros", "TaxesYOtros\TaxesYOtros\TaxesYOtros.csproj", "{5E1B1012-8AEB-4794-BD04-39A465303794}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxesYOtros", "TaxesYOtros\TaxesYOtros\TaxesYOtros.csproj", "{5E1B1012-8AEB-4794-BD04-39A465303794}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,8 +23,6 @@ Global
 		{912AA3DB-1B99-4BDE-AE52-7897F22162D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{912AA3DB-1B99-4BDE-AE52-7897F22162D0}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{912AA3DB-1B99-4BDE-AE52-7897F22162D0}.Debug|iPhone.ActiveCfg = Debug|Any CPU
-		{912AA3DB-1B99-4BDE-AE52-7897F22162D0}.Debug|iPhone.Build.0 = Debug|Any CPU
-		{912AA3DB-1B99-4BDE-AE52-7897F22162D0}.Debug|iPhone.Deploy.0 = Debug|Any CPU
 		{912AA3DB-1B99-4BDE-AE52-7897F22162D0}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
 		{912AA3DB-1B99-4BDE-AE52-7897F22162D0}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
 		{912AA3DB-1B99-4BDE-AE52-7897F22162D0}.Debug|iPhoneSimulator.Deploy.0 = Debug|Any CPU
