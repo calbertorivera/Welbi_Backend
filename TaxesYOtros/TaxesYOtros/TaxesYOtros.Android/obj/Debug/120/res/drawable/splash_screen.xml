@@ -1,0 +1,2 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"><item><color android:color="@color/launcher_background" /></item><item android:left="20dp" android:right="20dp">&gt;
+    <bitmap android:src="@drawable/splash_logo" android:tileMode="disabled" android:gravity="center" /></item></layer-list>
