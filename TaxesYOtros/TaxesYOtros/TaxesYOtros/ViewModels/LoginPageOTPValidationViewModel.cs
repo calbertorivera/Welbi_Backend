@@ -35,6 +35,7 @@ namespace TaxesYOtros.ViewModels
         #region Private properties  
         private ValidatableObject<string> code;
         private string codeError;
+        private bool addTrustedDevice;
         private IUserService userService;
         IDevice device;
         private string loginError;
@@ -53,6 +54,11 @@ namespace TaxesYOtros.ViewModels
             set => SetProperty(ref loginError, value);
         }
 
+        public bool AddTrustedDevice
+        {
+            get => addTrustedDevice;
+            set => SetProperty(ref addTrustedDevice, value);
+        }
         public string CodeError
         {
             get => codeError;
@@ -107,8 +113,11 @@ namespace TaxesYOtros.ViewModels
                     device = DependencyService.Get<IDevice>();
                     string Identifier = device.GetIdentifier();
                     var Email = Xamarin.Essentials.SecureStorage.GetAsync("emailOTP").Result;
-
-                    LoginResponse response = await userService.ConfirmOTPAsync(Email, device, code.Value);
+                    if (!AddTrustedDevice)
+                    {
+                        Identifier = "";
+                    }
+                    LoginResponse response = await userService.ConfirmOTPAsync(Email, Identifier, code.Value);
 
                     if (response.message == "OK")
                     {

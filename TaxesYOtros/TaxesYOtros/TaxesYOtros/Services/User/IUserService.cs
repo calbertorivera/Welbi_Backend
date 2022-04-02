@@ -11,7 +11,7 @@ namespace TaxesYOtros.Services.User
     public interface IUserService
     {
         Task<LoginResponse> LoginAsync(string username, string password, string deviceId);
-        Task<LoginResponse> ConfirmOTPAsync(string email, IDevice device, string value);
+        Task<LoginResponse> ConfirmOTPAsync(string email, string device, string value);
         Task<ServiceStatusResponse> ForgotPasswordAsync(string value);
         Task<ServiceStatusResponse> ResetPasswordAsync(string username, string password, string token);
         Task<RegistrationResponse> RegisterAsync(string value1, string value2, string value3, string value4, string value5, string value6, string value7);

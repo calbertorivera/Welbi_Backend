@@ -15,7 +15,7 @@ namespace TaxesYOtros.Services.RequestProvider
         Task<TResult> PutAsync<TResult>(string uri, string jsonData, string token = "", string header = "");
 
         Task DeleteAsync(string uri, string token = "");
-
+        Task<string> GetJsonAsync(String url);
         Task<T> ExecuteAsync<T>(RestRequest request) where T : class;
 
         Task<string> ExecuteAsyncUploadFile(RestRequest request);

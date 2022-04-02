@@ -17,7 +17,7 @@
   </queries>
   <application android:name="android.app.Application" android:allowBackup="true" android:appComponentFactory="androidx.core.app.CoreComponentFactory" android:debuggable="true" android:extractNativeLibs="true" android:icon="@mipmap/taxesyotrosicon" android:label="TaxesYOtros.Android" android:theme="@style/MainTheme">
     <activity android:name="crc6443f90f9ee8f521ba.MainActivity" android:configChanges="orientation|smallestScreenSize|screenLayout|screenSize|uiMode" android:icon="@mipmap/taxesyotrosicon" android:label="TaxesYOtros" android:theme="@style/MainTheme" />
-    <activity android:name="crc6443f90f9ee8f521ba.SplashActivity" android:exported="true" android:label="SplashActivity" android:noHistory="true" android:theme="@style/MyTheme.Splash">
+    <activity android:name="crc6443f90f9ee8f521ba.SplashActivity" android:exported="true" android:label="Taxes y Otros" android:noHistory="true" android:theme="@style/MyTheme.Splash">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />

@@ -12,7 +12,7 @@
   <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
   <application android:label="TaxesYOtros.Android" android:theme="@style/MainTheme" android:icon="@mipmap/taxesyotrosicon" android:name="android.app.Application" android:allowBackup="true" android:debuggable="true" android:extractNativeLibs="true">
     <activity android:configChanges="orientation|smallestScreenSize|screenLayout|screenSize|uiMode" android:icon="@mipmap/taxesyotrosicon" android:label="TaxesYOtros" android:theme="@style/MainTheme" android:name="crc6443f90f9ee8f521ba.MainActivity" />
-    <activity android:label="SplashActivity" android:noHistory="true" android:theme="@style/MyTheme.Splash" android:name="crc6443f90f9ee8f521ba.SplashActivity" android:exported="true">
+    <activity android:label="Taxes y Otros" android:noHistory="true" android:theme="@style/MyTheme.Splash" android:name="crc6443f90f9ee8f521ba.SplashActivity" android:exported="true">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />

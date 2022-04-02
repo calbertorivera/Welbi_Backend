@@ -14,7 +14,7 @@ namespace TaxesYOtros.Services.User
 {
     public class UserService : IUserService
     {
-        public async Task<LoginResponse> ConfirmOTPAsync(string email, IDevice device, string value)
+        public async Task<LoginResponse> ConfirmOTPAsync(string email, string device, string value)
         {
             var request = new RestRequest(GlobalSetting.Instance.ConfirmOTPEndpoint, Method.Post);
             request.AddParameter("username", email, ParameterType.GetOrPost);

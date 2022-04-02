@@ -265,7 +265,7 @@ namespace TaxesYOtros.ViewModels
             bool isValidLastName = lastName.HasValidData();
             if (!isValidLastName)
             {
-                lastNameError = !lastName.HasValidData() ? lastName.Errors.FirstOrDefault() : "";
+                LastNameError = !lastName.HasValidData() ? lastName.Errors.FirstOrDefault() : "";
 
             }
             bool isValidAddress = address.HasValidData();
@@ -302,7 +302,7 @@ namespace TaxesYOtros.ViewModels
                 passwordMatch = false;
             }
 
-            return isValidPassword && isValidPassword && passwordMatch;
+            return isValidEmail && isValidFirstName && isValidLastName && isValidAddress && isValidPhone  && isValidPassword && isValidConfirmPassword && passwordMatch;
 
         }
 

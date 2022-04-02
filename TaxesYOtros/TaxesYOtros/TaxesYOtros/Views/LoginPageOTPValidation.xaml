@@ -34,9 +34,25 @@
                         </Entry.Behaviors>
 
                     </Entry>
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />                          
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                         </Grid.ColumnDefinitions>
+                        <CheckBox IsChecked="{Binding AddTrustedDevice, Mode=TwoWay}"  Color="{StaticResource TaxesYOtrosGreenColor}" Grid.Row="1" Grid.Column="0" VerticalOptions="Center" />
+                        <Label Grid.Row="1" Grid.Column="1" VerticalTextAlignment="Center" Text="Guardar este dispositivo como confiable" TextColor="{StaticResource TaxesYOtrosGreenColor}"  />
+
+                    </Grid>
+                    
+
                     <Label  Text="{Binding CodeError, Mode=TwoWay}" TextColor="{StaticResource TaxesYOtrosRedColor}" FontAttributes="Bold"></Label>
                     <Label  Text="{Binding LoginError, Mode=TwoWay}" TextColor="{StaticResource TaxesYOtrosRedColor}" FontAttributes="Bold"></Label>
-
+                    
+                   
 
 
                     <Button Margin="0,10,0,0" Command="{Binding ValidateCodeOnClickCommand}" Text="Ingresar" TextColor="White"  

@@ -14,9 +14,11 @@
         <Grid ColumnSpacing="0" BackgroundColor="{StaticResource TaxesYOtrosRedColor}" Margin="0" RowSpacing="0" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="150" />
-                <RowDefinition Height="100" />
+               
+                <RowDefinition Height="80" />
                 <RowDefinition Height="*" />
-                <RowDefinition Height="70" />
+                <RowDefinition Height="100" />
+              
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -24,7 +26,9 @@
             <StackLayout Grid.Row="0" Orientation="Vertical"  Padding="0,60,0,0"   >
                 <Image HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="300"  Source="logo.png"/>
             </StackLayout>
-            <Label BackgroundColor="white" Grid.Row="1"  Text="Ingrese con su correo electronico" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" TextColor="red" FontAttributes="Bold" FontSize="Large"></Label>
+
+            <Label BackgroundColor="white" Grid.Row="1"  Text="{Binding Text_Title}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" TextColor="red" FontAttributes="Bold" FontSize="Large"></Label>
+
             <ScrollView  Grid.Row="2" Orientation="Vertical" Padding="30,0,30,0" BackgroundColor="White">
                 <StackLayout  Spacing="5">
                     <Entry FontSize="Large" x:Name="Email" Placeholder="Ingrese aquí su correo"   
@@ -77,15 +81,35 @@
                     </StackLayout.GestureRecognizers>
                 </StackLayout>-->
 
-
+                    <Button Command="{Binding RegisterCommand}" Text="Desea Registrarse? Registrese aquí" TextColor="White"  
+                    FontAttributes="Bold" FontSize="Medium" HorizontalOptions="FillAndExpand"  
+                    BackgroundColor="{StaticResource TaxesYOtrosGreenColor}" />
+                    
                     <Button Margin="0,20,0,0" BackgroundColor="white" Command="{Binding ForgotPasswordCommand}" Text="Olvidó su contraseña, haga click aquí?" TextColor="{StaticResource TaxesYOtrosGreenColor}"  
                     FontAttributes="Bold" FontSize="Large" HorizontalOptions="FillAndExpand"  
                      />
+
+
+                  
                 </StackLayout>
             </ScrollView>
-            <Button  Grid.Row="3" Padding="0,0,0,10"  Command="{Binding RegisterCommand}" Text="Desea Registrarse? Registrese aquí" TextColor="White"  
-                    FontAttributes="Bold" FontSize="Medium" HorizontalOptions="FillAndExpand"  
-                    BackgroundColor="{StaticResource TaxesYOtrosGreenColor}" />
+            <Grid BackgroundColor="Black"  Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.6*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.2*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.2*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <StackLayout  Grid.Column="0" Padding="0,33,0,0">
+                    <Label VerticalOptions="Start" Text="Change Language?:" HorizontalOptions="End" TextColor="white"></Label>
+                </StackLayout>
+                <StackLayout  Grid.Column="1"  Padding="0,20,0,0">
+                    <Button VerticalOptions="Start" Command="{Binding SpanishCommand}"   BackgroundColor="{StaticResource TaxesYOtrosGreenColor}" Text="Español"></Button>
+                </StackLayout>
+                <StackLayout Grid.Column="2"  Padding="0,20,0,0">
+                    <Button VerticalOptions="Start" Command="{Binding EnglishCommand}" BackgroundColor="{StaticResource TaxesYOtrosGreenColor}" Text="English"></Button>
+                </StackLayout>
+            </Grid>
+        
 
 
         </Grid>

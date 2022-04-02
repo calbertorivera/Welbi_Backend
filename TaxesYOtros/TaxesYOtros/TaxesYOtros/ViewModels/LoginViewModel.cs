@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 using TaxesYOtros.Services.User;
 using TaxesYOtros.Models;
 using TaxesYOtros.Models.Responses;
+using TaxesYOtros.Core;
+using Configuration;
+using TaxesYOtros.Services.Texts;
 
 namespace TaxesYOtros.ViewModels
 {
@@ -47,6 +50,7 @@ namespace TaxesYOtros.ViewModels
         private string loginError;
         private string passwordError;
         private IUserService userService;
+        private ITextService textsService;
         IDevice device;
         #endregion
 
@@ -93,6 +97,25 @@ namespace TaxesYOtros.ViewModels
 
         public ICommand ForgotPasswordCommand => new Command(async () => await ForgotPasswordAsync());
 
+        public ICommand SpanishCommand => new Command(async () => {
+            await Xamarin.Essentials.SecureStorage.SetAsync("lan", "ES");
+            this.textsService = DependencyService.Get<ITextService>();
+            String response =await  textsService.getAppTexts("ES");
+            await Xamarin.Essentials.SecureStorage.SetAsync("ES_TEXTS", response);
+
+            App.Current.MainPage = new LoginPage();
+
+        });
+
+        public ICommand EnglishCommand => new Command(async () => {
+            await Xamarin.Essentials.SecureStorage.SetAsync("lan", "EN");
+            this.textsService = DependencyService.Get<ITextService>();
+            String response = await textsService.getAppTexts("EN");
+            await Xamarin.Essentials.SecureStorage.SetAsync("EN_TEXTS", response);
+            App.Current.MainPage = new LoginPage();
+
+        });
+
         public ICommand ValidatePasswordCommand => new Command(() =>
         {
             PasswordError = !password.HasValidData() ? password.Errors.FirstOrDefault() : "";
@@ -110,7 +133,7 @@ namespace TaxesYOtros.ViewModels
             App.Current.MainPage = new ForgotPassword();
         }
 
-       
+
         protected void AddValidations()
         {
             email.Validations.Add(new IsNotNullOrEmptyRule<string>
@@ -190,6 +213,63 @@ namespace TaxesYOtros.ViewModels
             return password.HasValidData();
         }
         #endregion
-
+        #region Screen text
+       public string Text_Title
+        {
+            get
+            {
+                return GetLocalizedText(LanguageToken.LOGIN1, "Ingrese con su correo electrónico");
+            }
+        }
+        public string Text_PlaceHolder_Email
+        {
+            get
+            {
+                return GetLocalizedText(LanguageToken.LOGIN2, "Ingrese aquí su correo");
+            }
+        }
+        public string Text_PlaceHolder_Password
+        {
+            get
+            {
+                return GetLocalizedText(LanguageToken.LOGIN3, "Ingrese aquí su contraseña");
+            }
+        }
+        public string Text_Email_Required
+        {
+            get
+            {
+                return GetLocalizedText(LanguageToken.LOGIN4, "El correo electrónico es requerido");
+            }
+        }
+        public string Text_Password_Required
+        {
+            get
+            {
+                return GetLocalizedText(LanguageToken.LOGIN5, "La contraseña es requerida");
+            }
+        }
+        public string Text_Login_Button
+        {
+            get
+            {
+                return GetLocalizedText(LanguageToken.LOGIN6, "Ingresar");
+            }
+        }
+        public string Text_ForgotPassword
+        {
+            get
+            {
+                return GetLocalizedText(LanguageToken.LOGIN7, "Olvidó su contraseña, haga click aquí");
+            }
+        }
+        public string Text_SignUp
+        {
+            get
+            {
+                return GetLocalizedText(LanguageToken.LOGIN8, "Desea Registrarse ? Registrese auí");
+            }
+        }
+        #endregion
     }
 }

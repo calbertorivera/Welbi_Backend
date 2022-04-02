@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace TaxesYOtros.Droid
 {
-    [Activity(Label = "SplashActivity", MainLauncher = true, Theme = "@style/MyTheme.Splash", NoHistory = true)]
+    [Activity(Label = "Taxes y Otros", MainLauncher = true, Theme = "@style/MyTheme.Splash", NoHistory = true)]
     public class SplashActivity : Activity
     {
         protected override void OnCreate(Bundle savedInstanceState)
@@ -30,7 +30,7 @@ namespace TaxesYOtros.Droid
 
         async Task SimulateStartup()
         {
-            await Task.Delay(TimeSpan.FromSeconds(5));
+            await Task.Delay(TimeSpan.FromSeconds(3));
             StartActivity(new Intent(Application.Context, typeof(MainActivity)));
         }
     }

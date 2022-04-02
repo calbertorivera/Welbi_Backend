@@ -3,6 +3,7 @@ using System;
 using TaxesYOtros.Core;
 using TaxesYOtros.Services;
 using TaxesYOtros.Services.RequestProvider;
+using TaxesYOtros.Services.Texts;
 using TaxesYOtros.Services.User;
 using TaxesYOtros.Views;
 using Xamarin.Forms;
@@ -31,6 +32,7 @@ namespace TaxesYOtros
 
             DependencyService.Register<MockDataStore>();
             DependencyService.Register<IUserService, UserService>();
+            DependencyService.Register<ITextService, TextService>();
             DependencyService.Register<IRequestProvider, RequestProvider>();
 
             var isLoogged = Xamarin.Essentials.SecureStorage.GetAsync("isLogged").Result;

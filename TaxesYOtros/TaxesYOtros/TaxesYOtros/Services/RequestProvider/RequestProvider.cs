@@ -169,5 +169,20 @@ namespace TaxesYOtros.Services.RequestProvider
 
             return null;
         }
+
+        public async Task<string> GetJsonAsync(String url)
+        {
+            var cancellationTokenSource = new CancellationTokenSource();
+            HttpClient myClient = new HttpClient();
+
+            var response = await myClient.GetAsync(url);
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                return content;
+            }
+            return null;
+        }
+
     }
 }
