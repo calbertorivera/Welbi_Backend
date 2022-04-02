@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Configuration;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -65,11 +66,11 @@ namespace TaxesYOtros.ViewModels
         {
             email.Validations.Add(new IsNotNullOrEmptyRule<string>
             {
-                ValidationMessage = "El correo electronico es requerido"
+                ValidationMessage = Text_Email_Required
             });
             email.Validations.Add(new EmailRule<string>
             {
-                ValidationMessage = "El correo electronico no es valido"
+                ValidationMessage = Text_Email_Not_Valid
             });
           
         }
@@ -92,11 +93,11 @@ namespace TaxesYOtros.ViewModels
                     }
                     else if (response.message == "USER_NOT_VALID")
                     {
-                        emailError = "EL usuario ingresado no existe en nuestra base de datos";
+                        EmailError = Text_User_Doesnt_exist;
                     }                    
                     else
                     {
-                        emailError = "Hubo un error, por favor inténtelo más tarde";
+                        EmailError = Text_General_Error;
 
                     }
                 }
@@ -129,5 +130,40 @@ namespace TaxesYOtros.ViewModels
 
         #endregion
 
+
+        #region Screen text
+        public string Text_Title
+        {
+            get
+            {
+                return GetLocalizedText(LanguageToken.FORGOT1, "Enviaremos un codigo de recuperacion de contraseña, por favor indique su correo electronico a continuación (Por favor asegurese de revisar su bandeja de correo no deseado):");
+            }
+        }
+
+        public string Text_Email_PlaceHolder
+        {
+            get
+            {
+                return GetLocalizedText(LanguageToken.FORGOT2, "Ingrese aquí su dirección de correo electronico");
+            }
+        }
+
+        public string Text_Send_Recovery_Email
+        {
+            get
+            {
+                return GetLocalizedText(LanguageToken.FORGOT3, "Enviar Correo de Recuperación");
+            }
+        }
+        public string Text_User_Doesnt_exist
+        {
+            get
+            {
+                return GetLocalizedText(LanguageToken.FORGOT4, "EL usuario ingresado no existe en nuestra base de datos");
+            }
+        }
+
+       
+        #endregion
     }
 }

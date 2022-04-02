@@ -54,7 +54,7 @@ namespace TaxesYOtros
             ForgotPasswordEndpoint = $"{baseEndpoint}/forgotPassword.php";
             ResetPasswordEndpoint = $"{baseEndpoint}/resetPassword.php";
             RegisterPasswordEndpoint = $"{baseEndpoint}/register.php";
-            TextsEndpoint = $"{baseEndpoint}"+"/{0}.json";
+            TextsEndpoint = $"{baseEndpoint}"+"/{0}.json?v="+Guid.NewGuid();
         }
 
             #endregion

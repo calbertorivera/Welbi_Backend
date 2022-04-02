@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Configuration;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -82,7 +83,7 @@ namespace TaxesYOtros.ViewModels
         {
             code.Validations.Add(new IsNotNullOrEmptyRule<string>
             {
-                ValidationMessage = "El código es requerido"
+                ValidationMessage = Text_CodeisRequired
             });
 
         }
@@ -127,12 +128,12 @@ namespace TaxesYOtros.ViewModels
                     }
                     else if (response.message == "CODIGO_NO_VALIDO")
                     { 
-                        LoginError = "El codigo ha expirado, por favor intente iniciar sesión de nuevo.";
+                        LoginError = Text_CodeHasExpired;
 
                     }
                     else
                     {
-                        LoginError = "Hubo un error, por favor inténtelo más tarde";
+                        LoginError = Text_General_Error;
                     }
                 }
             });
@@ -143,6 +144,61 @@ namespace TaxesYOtros.ViewModels
             App.Current.MainPage = new LoginPage();
 
         }
+        #endregion
+
+        #region Screen text
+        public string Text_Title
+        {
+            get
+            {
+                return GetLocalizedText(LanguageToken.OTP1, "Hemos enviado un código a su correo electrónico y celular. Por favor, ingréselo a continuación para acceder a su información:");
+            }
+        }
+
+        public string Text_Code_PlaceHolder
+        {
+            get
+            {
+                return GetLocalizedText(LanguageToken.OTP2, "Ingrese aquí el código");
+            }
+        }
+
+        public string Text_SaveDevice_asTrusted
+        {
+            get
+            {
+                return GetLocalizedText(LanguageToken.OTP3, "Guardar este dispositivo como confiable");
+            }
+        }
+
+        public string Text_Login
+        {
+            get
+            {
+                return GetLocalizedText(LanguageToken.OTP4, "Ingresar");
+            }
+        }
+
+     
+
+        public string Text_CodeHasExpired
+        {
+            get
+            {
+                return GetLocalizedText(LanguageToken.OTP6, "El codigo ha expirado, por favor intente iniciar sesión de nuevo.");
+            }
+        }
+
+        public string Text_CodeisRequired
+        {
+            get
+            {
+                return GetLocalizedText(LanguageToken.OTP7, "El código es requerido");
+            }
+        }
+
+    
+       
         #endregion
     }
 }

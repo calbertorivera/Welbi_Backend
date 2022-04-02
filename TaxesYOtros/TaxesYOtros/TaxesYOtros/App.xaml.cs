@@ -15,9 +15,12 @@ namespace TaxesYOtros
     public partial class App : Application
     {
         private static RestClient restClient;
+        private ITextService textsService;
+  
         public static RestClient ServiceClient
         {
-            get {
+            get
+            {
                 if (restClient == null)
                 {
                     return new RestClient(GlobalSetting.Instance.BaseEndpoint);
@@ -44,6 +47,31 @@ namespace TaxesYOtros
             {
                 MainPage = new LoginPage();
             }
+
+            //check language
+            CheckLanguage();
+        }
+
+        private async void CheckLanguage()
+        {
+            try
+            {
+                String lang = await Xamarin.Essentials.SecureStorage.GetAsync("lan");
+                if (lang != null)
+                {
+                    //String texts = await Xamarin.Essentials.SecureStorage.GetAsync($"{lang}_TEXTS");
+                    //if (texts == null)
+                    //{
+                        this.textsService = DependencyService.Get<ITextService>();
+                        String response = await textsService.getAppTexts(lang);
+                        await Xamarin.Essentials.SecureStorage.SetAsync($"{lang}_TEXTS", response);
+                    //}
+                }
+            }
+            catch (Exception)
+            {
+
+            }   
         }
 
         protected override void OnStart()

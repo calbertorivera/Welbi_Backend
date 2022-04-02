@@ -31,7 +31,7 @@
 
             <ScrollView  Grid.Row="2" Orientation="Vertical" Padding="30,0,30,0" BackgroundColor="White">
                 <StackLayout  Spacing="5">
-                    <Entry FontSize="Large" x:Name="Email" Placeholder="Ingrese aquí su correo"   
+                    <Entry FontSize="Large" x:Name="Email" Placeholder="{Binding Text_PlaceHolder_Email}"   
                            
                            Keyboard="Email" Text="{Binding Email.Value, Mode=TwoWay}">
                         <Entry.Behaviors>
@@ -40,7 +40,7 @@
 
                     </Entry>
                     <Label  Text="{Binding EmailError, Mode=TwoWay}" TextColor="{StaticResource TaxesYOtrosRedColor}" FontAttributes="Bold"></Label>
-                    <Entry FontSize="Large"  x:Name="Password" Text="{Binding Password.Value, Mode=TwoWay}"  Placeholder="Ingrese su contraseña"   
+                    <Entry FontSize="Large"  x:Name="Password" Text="{Binding Password.Value, Mode=TwoWay}"  Placeholder="{Binding Text_PlaceHolder_Password}"   
                            
                            IsPassword="True">
                         <Entry.Behaviors>
@@ -52,41 +52,17 @@
 
                     <Label  Text="{Binding LoginError, Mode=TwoWay}" TextColor="{StaticResource TaxesYOtrosRedColor}" FontAttributes="Bold"></Label>
 
-                    <Button Margin="0,0,0,0" Command="{Binding LoginCommand}" Text="Ingresar" TextColor="White"  
+                    <Button Margin="0,0,0,0" Command="{Binding LoginCommand}" Text="{Binding Text_Login_Button}" TextColor="White"  
                     FontAttributes="Bold" FontSize="Large" HorizontalOptions="FillAndExpand"  
                     BackgroundColor="{StaticResource TaxesYOtrosRedColor}" />
 
 
-                    <!--<StackLayout>
-                    <Label HorizontalOptions="Center"  x:Name="ForgotPasswordLabel"
-       TextColor="{StaticResource TaxesYOtrosGreenColor}"
-                       FontAttributes="Bold"
-       Margin="0,20,0,0">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="Olvidó su contraseña, " TextColor="Black"/>
-                                <Span Text="haga click aquí?" TextColor="{StaticResource TaxesYOtrosGreenColor}"/>
-                            </FormattedString>
-                        </Label.FormattedText>
-                        <Label.Behaviors>
-                            <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding ForgotPasswordCommand}" />
-                        </Label.Behaviors>
-                    </Label>
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer 
-                                NumberOfTapsRequired="1"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type l:LoginViewModel}}, Path=ForgotPasswordCommand}"		
-                                CommandParameter="{Binding .}">
-                        </TapGestureRecognizer>
-                    </StackLayout.GestureRecognizers>
-                </StackLayout>-->
-
-                    <Button Command="{Binding RegisterCommand}" Text="Desea Registrarse? Registrese aquí" TextColor="White"  
-                    FontAttributes="Bold" FontSize="Medium" HorizontalOptions="FillAndExpand"  
-                    BackgroundColor="{StaticResource TaxesYOtrosGreenColor}" />
-                    
-                    <Button Margin="0,20,0,0" BackgroundColor="white" Command="{Binding ForgotPasswordCommand}" Text="Olvidó su contraseña, haga click aquí?" TextColor="{StaticResource TaxesYOtrosGreenColor}"  
+                    <Button Command="{Binding RegisterCommand}" Text="{Binding Text_SignUp}" TextColor="White"  
                     FontAttributes="Bold" FontSize="Large" HorizontalOptions="FillAndExpand"  
+                    BackgroundColor="{StaticResource TaxesYOtrosGreenColor}" />
+
+                    <Button Margin="0,20,0,0" BackgroundColor="white" Command="{Binding ForgotPasswordCommand}" Text="{Binding Text_ForgotPassword}" TextColor="{StaticResource TaxesYOtrosGreenColor}"  
+                    FontAttributes="Bold" FontSize="Medium" HorizontalOptions="FillAndExpand"  
                      />
 
 
@@ -100,7 +76,7 @@
                     <ColumnDefinition Width="0.2*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <StackLayout  Grid.Column="0" Padding="0,33,0,0">
-                    <Label VerticalOptions="Start" Text="Change Language?:" HorizontalOptions="End" TextColor="white"></Label>
+                    <Label VerticalOptions="Start" Text="{Binding TextCambiarIdioma}" HorizontalOptions="End" TextColor="white"></Label>
                 </StackLayout>
                 <StackLayout  Grid.Column="1"  Padding="0,20,0,0">
                     <Button VerticalOptions="Start" Command="{Binding SpanishCommand}"   BackgroundColor="{StaticResource TaxesYOtrosGreenColor}" Text="Español"></Button>

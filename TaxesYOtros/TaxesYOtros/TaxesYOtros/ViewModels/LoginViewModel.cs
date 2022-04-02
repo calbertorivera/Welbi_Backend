@@ -50,7 +50,7 @@ namespace TaxesYOtros.ViewModels
         private string loginError;
         private string passwordError;
         private IUserService userService;
-        private ITextService textsService;
+   
         IDevice device;
         #endregion
 
@@ -97,17 +97,19 @@ namespace TaxesYOtros.ViewModels
 
         public ICommand ForgotPasswordCommand => new Command(async () => await ForgotPasswordAsync());
 
-        public ICommand SpanishCommand => new Command(async () => {
+        public ICommand SpanishCommand => new Command(async () =>
+        {
             await Xamarin.Essentials.SecureStorage.SetAsync("lan", "ES");
-            this.textsService = DependencyService.Get<ITextService>();
-            String response =await  textsService.getAppTexts("ES");
+          
+            String response = await textsService.getAppTexts("ES");
             await Xamarin.Essentials.SecureStorage.SetAsync("ES_TEXTS", response);
 
             App.Current.MainPage = new LoginPage();
 
         });
 
-        public ICommand EnglishCommand => new Command(async () => {
+        public ICommand EnglishCommand => new Command(async () =>
+        {
             await Xamarin.Essentials.SecureStorage.SetAsync("lan", "EN");
             this.textsService = DependencyService.Get<ITextService>();
             String response = await textsService.getAppTexts("EN");
@@ -138,15 +140,15 @@ namespace TaxesYOtros.ViewModels
         {
             email.Validations.Add(new IsNotNullOrEmptyRule<string>
             {
-                ValidationMessage = "El correo electronico es requerido"
+                ValidationMessage = Text_Email_Required
             });
             email.Validations.Add(new EmailRule<string>
             {
-                ValidationMessage = "El correo electronico no es valido"
+                ValidationMessage = Text_Email_Not_Valid
             });
             password.Validations.Add(new IsNotNullOrEmptyRule<string>
             {
-                ValidationMessage = "La contraseña es requerida"
+                ValidationMessage = Text_Password_Required
             });
         }
 
@@ -180,12 +182,12 @@ namespace TaxesYOtros.ViewModels
                     }
                     else if (response.message == "CREDENCIALES_INCORRECTAS")
                     {
-                        LoginError = "El email no es correcto, por favor revise.";
+                        LoginError = Text_Credenciales_Incorrectas;
 
                     }
                     else
                     {
-                        LoginError = "Hubo un error, por favor inténtelo más tarde";
+                        LoginError = Text_General_Error;
 
                     }
                 }
@@ -214,7 +216,16 @@ namespace TaxesYOtros.ViewModels
         }
         #endregion
         #region Screen text
-       public string Text_Title
+      
+
+        public string Text_Credenciales_Incorrectas
+        {
+            get
+            {
+                return GetLocalizedText(LanguageToken.LOGIN11, "El email no es correcto, por favor revise.");
+            }
+        }
+        public string Text_Title
         {
             get
             {
@@ -235,13 +246,7 @@ namespace TaxesYOtros.ViewModels
                 return GetLocalizedText(LanguageToken.LOGIN3, "Ingrese aquí su contraseña");
             }
         }
-        public string Text_Email_Required
-        {
-            get
-            {
-                return GetLocalizedText(LanguageToken.LOGIN4, "El correo electrónico es requerido");
-            }
-        }
+      
         public string Text_Password_Required
         {
             get
@@ -267,9 +272,19 @@ namespace TaxesYOtros.ViewModels
         {
             get
             {
-                return GetLocalizedText(LanguageToken.LOGIN8, "Desea Registrarse ? Registrese auí");
+                return GetLocalizedText(LanguageToken.LOGIN8, "Desea Registrarse? Registrese auí");
             }
         }
+
+        public string TextCambiarIdioma
+        {
+            get
+            {
+                return GetLocalizedText(LanguageToken.LOGIN9, "Change Language?");
+            }
+        }
+
+
         #endregion
     }
 }

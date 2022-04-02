@@ -15,10 +15,11 @@ namespace TaxesYOtros.ViewModels
 {
     public class BaseViewModel : ExtendedBindableObject, INotifyPropertyChanged
     {
-        private ITextService textsService;
+        public ITextService textsService;
         public BaseViewModel(string trackPrefix = null)
             : base(trackPrefix)
         {
+            this.textsService = DependencyService.Get<ITextService>();
         }
 
         public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
@@ -72,11 +73,11 @@ namespace TaxesYOtros.ViewModels
                 var Texts = Xamarin.Essentials.SecureStorage.GetAsync($"{lan}_TEXTS").Result;
                 if (Texts != null)
                 {
-                  
-                    JObject texts=  JObject.Parse(Texts);
+
+                    JObject texts = JObject.Parse(Texts);
                     try
                     {
-                        string key =  token.ToString();
+                        string key = token.ToString();
                         var text = texts[key].ToString();
                         return text;
                     }
@@ -89,6 +90,42 @@ namespace TaxesYOtros.ViewModels
             return defaultText;
 
         }
+
+        #region Screen text
+
+
+        public string Text_General_Error
+        {
+            get
+            {
+                return GetLocalizedText(LanguageToken.GENERAL_ERROR, "Hubo un error, por favor inténtelo más tarde");
+            }
+        }
+
+        public string Text_TryToLoginAgain
+        {
+            get
+            {
+                return GetLocalizedText(LanguageToken.OTP5, "Intenta ingresar sesión de nuevo");
+            }
+        }
+
+        public string Text_Email_Not_Valid
+        {
+            get
+            {
+                return GetLocalizedText(LanguageToken.LOGIN10, "El correo electronico no es valido");
+            }
+        }
+        public string Text_Email_Required
+        {
+            get
+            {
+                return GetLocalizedText(LanguageToken.LOGIN4, "El correo electrónico es requerido");
+            }
+        }
+
+        #endregion
 
     }
 }
