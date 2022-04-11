@@ -28,6 +28,18 @@ namespace Configuration
         FORGOT1,
         FORGOT2,
         FORGOT3,
-        FORGOT4
+        FORGOT4,
+        FORGOT5,
+        FORGOT6,
+        FORGOT7,
+        FORGOT8,
+        FORGOT9,
+        FORGOT10,
+        FORGOT11,
+        FORGOT12,
+        FORGOT13,
+        FORGOT14,
+        FORGOT15,
+        FORGOT16
     }
 }

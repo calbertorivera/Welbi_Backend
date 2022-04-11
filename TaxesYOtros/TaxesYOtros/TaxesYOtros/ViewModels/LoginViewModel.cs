@@ -215,6 +215,7 @@ namespace TaxesYOtros.ViewModels
             return password.HasValidData();
         }
         #endregion
+
         #region Screen text
       
 

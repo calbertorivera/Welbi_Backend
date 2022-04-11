@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Configuration;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -98,7 +99,7 @@ namespace TaxesYOtros.ViewModels
 
             if (newPassword.HasValidData() && confirmPassword.HasValidData() && newPassword.Value != confirmPassword.Value)
             {
-                ConfirmPasswordError = "Las contraseñas no coinciden";
+                ConfirmPasswordError = TEXT_PASSWORDS_DONT_MATCH;
 
             }
         });
@@ -116,21 +117,21 @@ namespace TaxesYOtros.ViewModels
         {
             newPassword.Validations.Add(new IsNotNullOrEmptyRule<string>
             {
-                ValidationMessage = "La contraseña es requerida."
+                ValidationMessage = TEXT_PASSWORD_REQUIRED
             });
             newPassword.Validations.Add(new IsValidLengthRule<string>
             {
-                MinimumLength=6,
-                ValidationMessage = "La longitud minima es 6 letras"
+                MinimumLength = 6,
+                ValidationMessage = TEXT_MINIMUM_LENGTH
             });
 
             confirmPassword.Validations.Add(new IsNotNullOrEmptyRule<string>
             {
-                ValidationMessage = "La confirmación de contraseña es requerida."
+                ValidationMessage = TEXT_CONFIRM_PASSWORD_REQUIRED
             });
             otp.Validations.Add(new IsNotNullOrEmptyRule<string>
             {
-                ValidationMessage = "El código es requerido. (Por favor revise su bandeja de correo electronico, incluyendo bandeja de correos no deseados o spam)."
+                ValidationMessage = TEXT_CODE_IS_REQUIRED
             });
         }
 
@@ -150,16 +151,16 @@ namespace TaxesYOtros.ViewModels
 
                     if (response.message == "OK")
                     {
-                        await App.Current.MainPage.DisplayAlert("Taxes y Otros", "Su contraseña ha sido actualizada, por favor inicie sesión nuevamente", "Ok");
+                        await App.Current.MainPage.DisplayAlert("Taxes y Otros", TEXT_PASSWORD_HAS_BEEN_UPDATED, "Ok");
                         App.Current.MainPage = new LoginPage();
                     }
                     else if (response.message == "OTP_CODIGO_INCORRECTO")
                     {
-                        ConfirmPasswordError = "El código no es correcto";
+                        ConfirmPasswordError = TEXT_CODE_IS_NOT_CORRECT;
                     }
                     else
                     {
-                        ConfirmPasswordError = "Hubo un error, por favor inténtelo más tarde";
+                        ConfirmPasswordError = Text_General_Error;
 
                     }
                 }
@@ -194,7 +195,7 @@ namespace TaxesYOtros.ViewModels
                 bool passwordMatch = true;
                 if (newPassword.Value != confirmPassword.Value)
                 {
-                    ConfirmPasswordError = "Las contraseñas no coinciden";
+                    ConfirmPasswordError = TEXT_PASSWORDS_DONT_MATCH;
                     passwordMatch = false;
                 }
 
@@ -204,7 +205,7 @@ namespace TaxesYOtros.ViewModels
             {
                 return false;
             }
-            
+
 
         }
 
@@ -216,5 +217,98 @@ namespace TaxesYOtros.ViewModels
         }
 
         #endregion
+
+        #region Screen text
+
+
+
+
+        public string TEXT_RESET_PASSWORD
+        {
+            get
+            {
+                return GetLocalizedText(LanguageToken.FORGOT5, "Restablezca su contraseña aquí");
+            }
+        }
+        public string TEXT_ENTER_CODE
+        {
+            get
+            {
+                return GetLocalizedText(LanguageToken.FORGOT6, "Ingrese el código que recibió en su correo electrónico");
+            }
+        }
+        public string TEXT_ENTER_NEW_PASSWORD
+        {
+            get
+            {
+                return GetLocalizedText(LanguageToken.FORGOT7, "Ingrese su nueva contraseña");
+            }
+        }
+        public string TEXT_CONFIRM_NEW_PASSWORD
+        {
+            get
+            {
+                return GetLocalizedText(LanguageToken.FORGOT8, "Confirme su nueva contraseña");
+            }
+        }
+        public string TEXT_RESET_PASSWORD_BUTTON
+        {
+            get
+            {
+                return GetLocalizedText(LanguageToken.FORGOT9, "RESTABLECER CONTRASEÑA");
+            }
+        }
+        public string TEXT_PASSWORDS_DONT_MATCH
+        {
+            get
+            {
+                return GetLocalizedText(LanguageToken.FORGOT10, "Las contraseñas no coinciden");
+            }
+        }
+        public string TEXT_PASSWORD_REQUIRED
+        {
+            get
+            {
+                return GetLocalizedText(LanguageToken.FORGOT11, "La contraseña es requerida.");
+            }
+        }
+        public string TEXT_MINIMUM_LENGTH
+        {
+            get
+            {
+                return GetLocalizedText(LanguageToken.FORGOT12, "La longitud minima es 6 letras");
+            }
+        }
+        public string TEXT_CONFIRM_PASSWORD_REQUIRED
+        {
+            get
+            {
+                return GetLocalizedText(LanguageToken.FORGOT13, "La confirmación de contraseña es requerida.");
+            }
+        }
+        public string TEXT_CODE_IS_REQUIRED
+        {
+            get
+            {
+                return GetLocalizedText(LanguageToken.FORGOT14, "El código es requerido. (Por favor revise su bandeja de correo electronico, incluyendo bandeja de correos no deseados o spam).");
+            }
+        }
+        public string TEXT_PASSWORD_HAS_BEEN_UPDATED
+        {
+            get
+            {
+                return GetLocalizedText(LanguageToken.FORGOT15, "Su contraseña ha sido actualizada, por favor inicie sesión nuevamente");
+            }
+        }
+        public string TEXT_CODE_IS_NOT_CORRECT
+        {
+            get
+            {
+                return GetLocalizedText(LanguageToken.FORGOT16, "El código no es correcto");
+            }
+        }
+
+        #endregion
+
     }
 }
