@@ -9,8 +9,8 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
 
-
-        <Grid ColumnSpacing="0" BackgroundColor="{StaticResource TaxesYOtrosRedColor}" Margin="0" RowSpacing="0" >
+        <Grid>
+            <Grid ColumnSpacing="0" BackgroundColor="{StaticResource TaxesYOtrosRedColor}" Margin="0" RowSpacing="0" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="150" />
                 <RowDefinition Height="*" />
@@ -34,6 +34,7 @@
                         </Entry.Behaviors>
 
                     </Entry>
+                    <Label  Text="{Binding CodeError, Mode=TwoWay}" TextColor="{StaticResource TaxesYOtrosRedColor}" FontAttributes="Bold"></Label>
 
                     <Grid>
                         <Grid.RowDefinitions>
@@ -43,13 +44,12 @@
                             <ColumnDefinition Width="30"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                          </Grid.ColumnDefinitions>
-                        <CheckBox IsChecked="{Binding AddTrustedDevice, Mode=TwoWay}"  Color="{StaticResource TaxesYOtrosGreenColor}" Grid.Row="1" Grid.Column="0" VerticalOptions="Center" />
-                        <Label Grid.Row="1" Grid.Column="1" VerticalTextAlignment="Center" Text="{Binding Text_SaveDevice_asTrusted}" TextColor="{StaticResource TaxesYOtrosGreenColor}"  />
+                        <CheckBox IsChecked="{Binding AddTrustedDevice, Mode=TwoWay}" Color="{StaticResource TaxesYOtrosGreenColor}" Grid.Row="1" Grid.Column="0" VerticalOptions="Center" />
+                        <Label Grid.Row="1" Grid.Column="1" FontAttributes="Bold" VerticalTextAlignment="Center" Text="{Binding Text_SaveDevice_asTrusted}" TextColor="{StaticResource TaxesYOtrosGreenColor}"  />
 
                     </Grid>
                     
 
-                    <Label  Text="{Binding CodeError, Mode=TwoWay}" TextColor="{StaticResource TaxesYOtrosRedColor}" FontAttributes="Bold"></Label>
                     <Label  Text="{Binding LoginError, Mode=TwoWay}" TextColor="{StaticResource TaxesYOtrosRedColor}" FontAttributes="Bold"></Label>
 
 
@@ -69,6 +69,12 @@
                     BackgroundColor="{StaticResource TaxesYOtrosGreenColor}" />
 
 
+        </Grid>
+        <ActivityIndicator x:Name="activity" 
+                       IsRunning="{Binding IsBusy}"  
+                       IsEnabled="{Binding IsBusy}" 
+                       IsVisible="{Binding IsBusy}" HorizontalOptions="Center" VerticalOptions="Center"
+                       BackgroundColor="Transparent"/>
         </Grid>
 
     </ContentPage.Content>

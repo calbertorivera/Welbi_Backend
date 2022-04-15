@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
 using TaxesYOtros.Classes;
+using TaxesYOtros.CustomClasses;
 using TaxesYOtros.Views;
 using Xamarin.Forms;
 using System.Linq;
@@ -12,6 +13,7 @@ using TaxesYOtros.Models;
 using TaxesYOtros.Models.Responses;
 using System.Reflection;
 using TaxesYOtros.Models.Responses.ResposneDTO;
+using Configuration;
 
 namespace TaxesYOtros.ViewModels
 {
@@ -195,57 +197,57 @@ namespace TaxesYOtros.ViewModels
         {
             email.Validations.Add(new IsNotNullOrEmptyRule<string>
             {
-                ValidationMessage = "El correo electronico es requerido"
+                ValidationMessage = Text_Email_is_Required
             });
             email.Validations.Add(new EmailRule<string>
             {
-                ValidationMessage = "El correo electronico no es valido"
+                ValidationMessage = Text_Email_is_not_valid
             });
 
             firstName.Validations.Add(new IsNotNullOrEmptyRule<string>
             {
-                ValidationMessage = "El Primer Nombre es requerido"
+                ValidationMessage = Text_FirstName_Required
             });
 
             lastName.Validations.Add(new IsNotNullOrEmptyRule<string>
             {
-                ValidationMessage = "El Apellido es requerido"
+                ValidationMessage = Text_LastName_Is_Required
             });
 
             address.Validations.Add(new IsNotNullOrEmptyRule<string>
             {
-                ValidationMessage = "La dirección es requerida"
+                ValidationMessage = Text_Address_Is_Required
             });
 
             phone.Validations.Add(new IsNotNullOrEmptyRule<string>
             {
-                ValidationMessage = "El teléfono es requerido"
+                ValidationMessage = Text_Phone_Is_Required
             });
 
             phone.Validations.Add(new IsValidNumberRule<string>
             {
-                ValidationMessage = "El teléfono debe ser solo numeros"
+                ValidationMessage = Text_Phone_Must_Be_Numbers
             });
 
             phone.Validations.Add(new IsValidLengthRule<string>
             {
                 MaximumLength = 10,
-                ValidationMessage = "El teléfono es requerido y no debe contener mas de 10 numeros"
+                ValidationMessage = Text_Phone_Number_Is_Required
             });
 
             password.Validations.Add(new IsNotNullOrEmptyRule<string>
             {
-                ValidationMessage = "La contraseña es requerida."
+                ValidationMessage = Text_Password_Is_Required
             });
             password.Validations.Add(new IsValidLengthRule<string>
             {
                 MinimumLength = 6,
-                ValidationMessage = "La longitud minima es 6 letras"
+                ValidationMessage = Text_Minimum_Length_6
             });
 
             confirmPassword.Validations.Add(new IsNotNullOrEmptyRule<string>
             {
-                ValidationMessage = "La confirmación de contraseña es requerida."
+                ValidationMessage = Text_Confirm_Password_Is_Required
             });
 
         }
@@ -298,16 +300,17 @@ namespace TaxesYOtros.ViewModels
             bool passwordMatch = true;
             if (password.Value != confirmPassword.Value)
             {
-                ConfirmPasswordError = "Las contraseñas no coinciden";
+                ConfirmPasswordError = Text_Passwords_Dont_Match;
                 passwordMatch = false;
             }
 
-            return isValidEmail && isValidFirstName && isValidLastName && isValidAddress && isValidPhone  && isValidPassword && isValidConfirmPassword && passwordMatch;
+            return isValidEmail && isValidFirstName && isValidLastName && isValidAddress && isValidPhone && isValidPassword && isValidConfirmPassword && passwordMatch;
 
         }
 
         private async void RegisterClicked(object obj)
         {
+            this.IsBusy = true;
             await base.ExecuteMethodAsync("OnLoginClicked", async delegate ()
             {
                 if (Validate())
@@ -319,13 +322,13 @@ namespace TaxesYOtros.ViewModels
                     if (response.message == "OK")
                     {
 
-                        await App.Current.MainPage.DisplayAlert("Taxes y Otros", "Registro Exitoso! por favor ingrese con su email y contraseña.", "Ok");
+                        await App.Current.MainPage.DisplayAlert("Taxes y Otros", Text_Successfullty_Registered, "Ok");
                         App.Current.MainPage = new LoginPage();
 
                     }
                     else if (response.message == "VALIDATION_ERRORS")
                     {
-                        if (response.errors!=null)
+                        if (response.errors != null)
                         {
                             PropertyInfo[] myPropertyInfo;
                             // Get the properties of 'Type' class object.
@@ -334,30 +337,32 @@ namespace TaxesYOtros.ViewModels
                             {
                                 var PropValue = response.errors.GetType().GetProperty(myPropertyInfo[i].Name).GetValue(response.errors, null);
 
-                                if (PropValue!=null)
+                                if (PropValue != null)
                                 {
-                                    await App.Current.MainPage.DisplayAlert("Taxes y Otros", PropValue?.ToString(), "Ok");                              
+                                    await App.Current.MainPage.DisplayAlert("Taxes y Otros", PropValue?.ToString(), "Ok");
                                     break;
                                 }
-                               
+
                             }
                         }
                         else
                         {
-                            RegisterError = "El formulario se encuentra incompleto";
+                            RegisterError = Text_Form_Is_Not_Complete;
                         }
-                    }                    
+                    }
                     else if (response.message == "EMAIL_ALREADY_EXIST")
                     {
-                        RegisterError = "El email ya se encuentra registrado.";
+                        RegisterError = Text_Email_Is_Already_Registered;
 
                     }
                     else
                     {
-                        RegisterError = "Hubo un error, por favor inténtelo más tarde";
+                        RegisterError = Text_General_Error;
                     }
                 }
             });
+
+            this.IsBusy = false;
         }
 
         private async void OnLoginClicked(object obj)
@@ -365,6 +370,44 @@ namespace TaxesYOtros.ViewModels
             App.Current.MainPage = new LoginPage();
 
         }
+        #endregion
+
+        #region Screen text
+
+
+
+        public string Text_Register { get { return GetLocalizedText(LanguageToken.REGISTRATION1, "Crear Cuenta"); } }
+        public string Text_Email { get { return GetLocalizedText(LanguageToken.REGISTRATION2, "Correo Electrónico:"); } }
+        public string Text_Email_PlaceHolder { get { return GetLocalizedText(LanguageToken.REGISTRATION3, "Ingrese aquí su corre electronico"); } }
+        public string Text_FirstName { get { return GetLocalizedText(LanguageToken.REGISTRATION4, "Primer Nombre:"); } }
+        public string Text_FirstName_PlaceHolder { get { return GetLocalizedText(LanguageToken.REGISTRATION5, "Ingrese aquí su primer nombre"); } }
+        public string Text_LastName { get { return GetLocalizedText(LanguageToken.REGISTRATION6, "Apellido:"); } }
+        public string Text_LastName_PlaceHolder { get { return GetLocalizedText(LanguageToken.REGISTRATION7, "Ingrese aquí su apellido"); } }
+        public string Text_Address { get { return GetLocalizedText(LanguageToken.REGISTRATION8, "Dirección:"); } }
+        public string Text_Address_PlaceHolder { get { return GetLocalizedText(LanguageToken.REGISTRATION9, "Ingrese aquí su dirección de residencia"); } }
+        public string Text_Phone { get { return GetLocalizedText(LanguageToken.REGISTRATION10, "Celular:"); } }
+        public string Text_Phone_PlaceHolder { get { return GetLocalizedText(LanguageToken.REGISTRATION11, "Ingrese aquí su número de contacto"); } }
+        public string Text_Password { get { return GetLocalizedText(LanguageToken.REGISTRATION12, "Contraseña:"); } }
+        public string Text_Password_PlaceHolder { get { return GetLocalizedText(LanguageToken.REGISTRATION13, "Ingrese aquí su Contraseña"); } }
+        public string Text_ConfirmPassword { get { return GetLocalizedText(LanguageToken.REGISTRATION14, "Confirme su Contraseña:"); } }
+        public string Text_ConfirmPassword_PlaceHolder { get { return GetLocalizedText(LanguageToken.REGISTRATION15, "Confirme su Contraseña"); } }
+        public string Text_Email_is_Required { get { return GetLocalizedText(LanguageToken.REGISTRATION16, "El correo electronico es requerido"); } }
+        public string Text_Email_is_not_valid { get { return GetLocalizedText(LanguageToken.REGISTRATION17, "El correo electronico no es valido"); } }
+        public string Text_FirstName_Required { get { return GetLocalizedText(LanguageToken.REGISTRATION18, "El Primer Nombre es requerido"); } }
+        public string Text_LastName_Is_Required { get { return GetLocalizedText(LanguageToken.REGISTRATION19, "El Apellido es requerido"); } }
+        public string Text_Address_Is_Required { get { return GetLocalizedText(LanguageToken.REGISTRATION20, "La dirección es requerida"); } }
+        public string Text_Phone_Is_Required { get { return GetLocalizedText(LanguageToken.REGISTRATION21, "El teléfono es requerido"); } }
+        public string Text_Phone_Must_Be_Numbers { get { return GetLocalizedText(LanguageToken.REGISTRATION22, "El teléfono debe ser solo numeros"); } }
+        public string Text_Phone_Number_Is_Required { get { return GetLocalizedText(LanguageToken.REGISTRATION23, "El teléfono es requerido y no debe contener mas de 10 números"); } }
+        public string Text_Password_Is_Required { get { return GetLocalizedText(LanguageToken.REGISTRATION24, "La contraseña es requerida."); } }
+        public string Text_Minimum_Length_6 { get { return GetLocalizedText(LanguageToken.REGISTRATION25, "La longitud minima es 6 letras"); } }
+        public string Text_Confirm_Password_Is_Required { get { return GetLocalizedText(LanguageToken.REGISTRATION26, "La confirmación de contraseña es requerida."); } }
+        public string Text_Passwords_Dont_Match { get { return GetLocalizedText(LanguageToken.REGISTRATION27, "Las contraseñas no coinciden"); } }
+        public string Text_Successfullty_Registered { get { return GetLocalizedText(LanguageToken.REGISTRATION28, "Registro Exitoso! por favor ingrese con su email y contraseña."); } }
+        public string Text_Form_Is_Not_Complete { get { return GetLocalizedText(LanguageToken.REGISTRATION29, "El formulario se encuentra incompleto"); } }
+        public string Text_Email_Is_Already_Registered { get { return GetLocalizedText(LanguageToken.REGISTRATION30, "El email ya se encuentra registrado."); } }
+        public string Text_Submit { get { return GetLocalizedText(LanguageToken.REGISTRATION31, "Crear Cuenta"); } }
+
         #endregion
 
     }

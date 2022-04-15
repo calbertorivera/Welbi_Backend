@@ -1,6 +1,5 @@
 C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros\bin\Debug\netstandard2.0\TaxesYOtros.deps.json
 C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros\bin\Debug\netstandard2.0\TaxesYOtros.dll
-C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros\bin\Debug\netstandard2.0\ref\TaxesYOtros.dll
 C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros\bin\Debug\netstandard2.0\TaxesYOtros.pdb
 C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros\obj\Debug\netstandard2.0\TaxesYOtros.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros\obj\Debug\netstandard2.0\App.xaml.g.cs
@@ -22,3 +21,4 @@ C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros\obj\Debug\netsta
 C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros\obj\Debug\netstandard2.0\TaxesYOtros.pdb
 C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros\obj\Debug\netstandard2.0\Views\Register.xaml.g.cs
 C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros\obj\Debug\netstandard2.0\TaxesYOtros.csproj.AssemblyReference.cache
+C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros\obj\Debug\netstandard2.0\refint\TaxesYOtros.dll

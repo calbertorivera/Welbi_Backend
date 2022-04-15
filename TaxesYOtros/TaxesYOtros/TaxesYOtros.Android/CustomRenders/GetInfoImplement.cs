@@ -8,7 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using TaxesYOtros.Classes;
+using TaxesYOtros.CustomClasses;
 using TaxesYOtros.Droid.CustomRenders;
 using static Android.Provider.Settings;
 

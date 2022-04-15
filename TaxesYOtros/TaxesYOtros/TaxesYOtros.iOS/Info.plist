@@ -20,6 +20,12 @@
         <string>UIInterfaceOrientationLandscapeLeft</string>
         <string>UIInterfaceOrientationLandscapeRight</string>
     </array>
+  <key>UIAppFonts</key>
+  <array>
+    <string>FontAwesome6Brands.otf</string>
+    <string>FontAwesome6Regular.otf</string>
+    <string>FontAwesome6Solid.otf</string>
+  </array>
     <key>MinimumOSVersion</key>
     <string>8.0</string>
     <key>CFBundleDisplayName</key>

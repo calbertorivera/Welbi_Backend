@@ -76,6 +76,9 @@
     <Compile Include="SplashActivity.cs" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidAsset Include="Assets\FontAwesome6Solid.otf" />
+    <AndroidAsset Include="Assets\FontAwesome6Brands.otf" />
+    <AndroidAsset Include="Assets\FontAwesome6Regular.otf" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="Properties\AndroidManifest.xml" />

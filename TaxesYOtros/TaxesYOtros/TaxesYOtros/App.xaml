@@ -2,10 +2,16 @@
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TaxesYOtros.App">
-    <!--
+  
+    <Application.Resources>
+        <!--
         Define global resources and styles here, that apply to all pages in your app.
     -->
-    <Application.Resources>
+
+        <Style TargetType="Grid">
+            <Setter Property="ColumnSpacing" Value="0" />
+            <Setter Property="RowSpacing" Value="0" />
+        </Style>
         <ResourceDictionary>
             <Color x:Key="Primary">#2196F3</Color>
             <Color x:Key="TaxesYOtrosRedColor">#e51f28</Color>
@@ -49,6 +55,38 @@
                     </VisualStateGroupList>
                 </Setter>
             </Style>
+
+
+
+            <OnPlatform x:TypeArguments="x:String" 
+                x:Key="FontAwesomeBrands">
+                <On Platform="Android" 
+          Value="FontAwesome6Brands.otf#Regular" />
+                <On Platform="iOS" 
+          Value="FontAwesome6Brands-Regular" />
+                <On Platform="UWP" 
+          Value="/Assets/FontAwesome6Brands.otf#Font Awesome 6 Brands" />
+            </OnPlatform>
+
+            <OnPlatform x:TypeArguments="x:String" 
+                x:Key="FontAwesomeSolid">
+                <On Platform="Android" 
+          Value="FontAwesome6Solid.otf#Regular" />
+                <On Platform="iOS" 
+          Value="FontAwesome6Free-Solid" />
+                <On Platform="UWP" 
+          Value="/Assets/FontAwesome6Solid.otf#Font Awesome 6 Free" />
+            </OnPlatform>
+
+            <OnPlatform x:TypeArguments="x:String" 
+                x:Key="FontAwesomeRegular">
+                <On Platform="Android" 
+          Value="FontAwesome6Regular.otf#Regular" />
+                <On Platform="iOS" 
+          Value="FontAwesome6Free-Regular" />
+                <On Platform="UWP" 
+          Value="/Assets/FontAwesome6Regular.otf#Font Awesome 6 Free" />
+            </OnPlatform>
         </ResourceDictionary>        
     </Application.Resources>
 </Application>

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Input;
 using TaxesYOtros.Classes;
+using TaxesYOtros.CustomClasses;
 using TaxesYOtros.Models.Responses;
 using TaxesYOtros.Services.User;
 using TaxesYOtros.Views;
@@ -78,6 +79,7 @@ namespace TaxesYOtros.ViewModels
 
         private async void OnSendRecoveryEmailClicked(object obj)
         {
+            this.IsBusy = true;
             await base.ExecuteMethodAsync("OnLoginClicked", async delegate ()
             {
                 if (Validate())
@@ -102,6 +104,7 @@ namespace TaxesYOtros.ViewModels
                     }
                 }
             });
+            this.IsBusy = false;
 
         }
 

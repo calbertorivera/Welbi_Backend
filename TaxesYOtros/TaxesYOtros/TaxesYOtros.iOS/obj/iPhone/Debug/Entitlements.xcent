@@ -8,5 +8,9 @@
 	<true/>
 	<key>com.apple.developer.team-identifier</key>
 	<string>KRDUKGQYDJ</string>
+	<key>com.apple.developer.user-fonts</key>
+	<array>
+		<string>system-installation</string>
+	</array>
 </dict>
 </plist>

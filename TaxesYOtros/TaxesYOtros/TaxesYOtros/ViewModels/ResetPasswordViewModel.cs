@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Input;
+using TaxesYOtros.CustomClasses;
 using TaxesYOtros.Classes;
 using TaxesYOtros.Models.Responses;
 using TaxesYOtros.Services.User;
@@ -137,6 +138,7 @@ namespace TaxesYOtros.ViewModels
 
         private async void OnResetPasswordClicked(object obj)
         {
+            this.IsBusy = true;
             await base.ExecuteMethodAsync("OnLoginClicked", async delegate ()
             {
                 if (Validate())
@@ -165,6 +167,7 @@ namespace TaxesYOtros.ViewModels
                     }
                 }
             });
+            this.IsBusy = false;
 
         }
 

@@ -70,6 +70,9 @@
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <BundleResource Include="Resources\FontAwesome6Solid.otf" />
+    <BundleResource Include="Resources\FontAwesome6Brands.otf" />
+    <BundleResource Include="Resources\FontAwesome6Regular.otf" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\1024.png">

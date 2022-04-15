@@ -38,6 +38,8 @@ namespace TaxesYOtros
             DependencyService.Register<ITextService, TextService>();
             DependencyService.Register<IRequestProvider, RequestProvider>();
 
+            Application.Current.UserAppTheme = OSAppTheme.Light;
+
             var isLoogged = Xamarin.Essentials.SecureStorage.GetAsync("isLogged").Result;
             if (isLoogged == "1")
             {

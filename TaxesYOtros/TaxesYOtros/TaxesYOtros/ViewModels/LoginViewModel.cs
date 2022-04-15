@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
 using TaxesYOtros.Classes;
+using TaxesYOtros.CustomClasses;
 using TaxesYOtros.Views;
 using Xamarin.Forms;
 using System.Linq;
@@ -99,22 +100,25 @@ namespace TaxesYOtros.ViewModels
 
         public ICommand SpanishCommand => new Command(async () =>
         {
+            this.IsBusy = true;
             await Xamarin.Essentials.SecureStorage.SetAsync("lan", "ES");
           
             String response = await textsService.getAppTexts("ES");
             await Xamarin.Essentials.SecureStorage.SetAsync("ES_TEXTS", response);
 
             App.Current.MainPage = new LoginPage();
-
+            this.IsBusy = false;
         });
 
         public ICommand EnglishCommand => new Command(async () =>
         {
+            this.IsBusy = true;
             await Xamarin.Essentials.SecureStorage.SetAsync("lan", "EN");
             this.textsService = DependencyService.Get<ITextService>();
             String response = await textsService.getAppTexts("EN");
             await Xamarin.Essentials.SecureStorage.SetAsync("EN_TEXTS", response);
             App.Current.MainPage = new LoginPage();
+            this.IsBusy = false;
 
         });
 
@@ -159,11 +163,13 @@ namespace TaxesYOtros.ViewModels
 
         private async void OnLoginClicked(object obj)
         {
+            this.IsBusy = true;
             await base.ExecuteMethodAsync("OnLoginClicked", async delegate ()
             {
+              
                 if (Validate())
                 {
-
+                   
                     device = DependencyService.Get<IDevice>();
                     string Identifier = device.GetIdentifier();
                     LoginResponse response = await userService.LoginAsync(email.Value, password.Value, Identifier);
@@ -191,7 +197,10 @@ namespace TaxesYOtros.ViewModels
 
                     }
                 }
+              
             });
+
+            this.IsBusy = false;
 
         }
 
