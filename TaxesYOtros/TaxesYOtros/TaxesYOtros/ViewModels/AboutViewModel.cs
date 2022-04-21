@@ -1,6 +1,9 @@
 ﻿using Configuration;
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
+using TaxesYOtros.Classes;
 using TaxesYOtros.Services.Texts;
 using TaxesYOtros.Views;
 using Xamarin.Essentials;
@@ -10,11 +13,62 @@ namespace TaxesYOtros.ViewModels
 {
     public class AboutViewModel : BaseViewModel
     {
+        #region Constructor
+
+
         public AboutViewModel()
+       : base("AboutViewModel")
         {
-            Title = "About";
-            OpenWebCommand = new Command(async () => await Browser.OpenAsync("https://aka.ms/xamarin-quickstart"));
+
+            base.ExecuteMethod("LoginViewModel", delegate ()
+            {
+                Title = "";
+
+                sections = new ObservableCollection<Section>();
+                sections.Add(new Section(Constants.Sections.PERSONAL_INFO, "Información Personal", false));
+                sections.Add(new Section(Constants.Sections.SPOUSE_INFO, "Información del Cónyuge", false));
+                sections.Add(new Section(Constants.Sections.ADDRESS_INFO, "Información de Residencia", true));
+                sections.Add(new Section(Constants.Sections.BANK_INFO, "Información Bancaria", false));
+                sections.Add(new Section(Constants.Sections.DEPENDENTS_INFO, "Dependientes", false));
+                sections.Add(new Section(Constants.Sections.DOCUMENTS, "Documentos", false));
+
+                SetProperty(ref sections, sections);
+
+                
+            });
+
+            ItemTapped = new Command<Section>(OnItemSelected);
         }
+        #endregion
+
+        #region Private properties       
+        private ObservableCollection<Section> sections;
+      
+        #endregion
+
+        #region Public properties
+
+
+        public ObservableCollection<Section> Sections
+        {
+            get => sections;
+            set => SetProperty(ref sections, value);
+        }
+
+        #endregion
+
+        #region Commands
+        async void OnItemSelected(Section item)
+        {
+            if (item == null)
+                return;
+
+         
+            await App.Current.MainPage.DisplayAlert("Taxes y Otros", item.name, "Ok");
+            //// This will push the ItemDetailPage onto the navigation stack
+            //await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}");
+        }
+        public Command<Section> ItemTapped { get; }
 
         public ICommand OpenWebCommand { get; }
 
@@ -40,6 +94,10 @@ namespace TaxesYOtros.ViewModels
             this.IsBusy = false;
 
         });
+        #endregion
+
+
+       
         #region Screen text
 
         public string TextCambiarIdioma

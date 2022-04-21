@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TaxesYOtros.Views.AboutPage"
              xmlns:vm="clr-namespace:TaxesYOtros.ViewModels"
-             Title="{Binding Title}" BackgroundColor="White">
+             xmlns:fontawesome="clr-namespace:TaxesYOtros.Classes"
+             Title="{Binding Title}" BackgroundColor="black">
 
     <ContentPage.BindingContext>
         <vm:AboutViewModel />
@@ -21,7 +22,7 @@
                     <RowDefinition.Height>
                         <OnPlatform x:TypeArguments="GridLength">
                             <On Platform="Android">100</On>
-                            <On Platform="iOS">150</On>
+                            <On Platform="iOS">80</On>
                         </OnPlatform>
                     </RowDefinition.Height>
                 </RowDefinition>
@@ -33,31 +34,63 @@
                 <Image HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="300"  Source="logo.png"/>
                 <StackLayout.Padding>
                     <OnPlatform x:TypeArguments="Thickness">
-                        <On Platform="iOS" Value="0,60,0,0" />
+                        <On Platform="iOS" Value="0,0,0,0" />
                         <On Platform="Android" Value="0,20,0,0" />
                     </OnPlatform>
                 </StackLayout.Padding>
             </StackLayout>
-            <ScrollView Grid.Row="1" BackgroundColor="White">
+            <StackLayout Grid.Row="1" BackgroundColor="White">
                 <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
                     <Label TextColor="black" Text="Primero Nuestros Clientes" FontSize="Title"/>
-                    <Label TextColor="black" Text="Nuestra misión es brindar a nuestros clientes los más altos estándares de satisfacción con nuestros servicios. Buscando siempre estar actualizados en todo lo relacionado con la legislación de impuestos en los Estados Unidos para dar a nuestra comunidad hispana el mejor asesoramiento en materia tributaria." FontSize="16" Padding="0,0,0,0"/>
-                    <!--<Label FontSize="16" Padding="0,24,0,0">
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <FormattedString.Spans>
-                                <Span Text="Learn more at "/>
-                                <Span Text="https://aka.ms/xamarin-quickstart" FontAttributes="Bold"/>
-                            </FormattedString.Spans>
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>-->
-                    <!--<Button Margin="0,10,0,0" Text="Learn more"
-                        Command="{Binding OpenWebCommand}"
-                        BackgroundColor="{StaticResource Primary}"
-                         />-->
+                    <!--<Label TextColor="black" Text="Nuestra misión es brindar a nuestros clientes los más altos estándares de satisfacción con nuestros servicios. Buscando siempre estar actualizados en todo lo relacionado con la legislación de impuestos en los Estados Unidos para dar a nuestra comunidad hispana el mejor asesoramiento en materia tributaria." FontSize="16" Padding="0,0,0,0"/>-->
+
+                    <Label TextColor="black" Margin="0,20,0,20" Text="A continuación el estado de su información por secciones. Su solicitud será atendida solo si todas las secciones están completas." FontSize="16" Padding="0,0,0,0"/>
+
+                    <ScrollView>
+                        <StackLayout BindableLayout.ItemsSource="{Binding Sections}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid HorizontalOptions="FillAndExpand">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="50"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <StackLayout Grid.Row="0" Grid.Column="0">
+                                            <Label  TextColor="Black" FontSize="Large" >
+                                                <Label.Margin>
+                                                    <OnPlatform x:TypeArguments="Thickness">
+                                                        <On Platform="Android">0,5,0,0</On>
+                                                        <On Platform="iOS">0,15,0,0</On>
+                                                    </OnPlatform>
+                                                </Label.Margin>
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span TextColor="Gray" Text="{x:Static fontawesome:FontAwesomeIcons.Asterisk}" FontSize="Large" FontFamily="{StaticResource FontAwesomeSolid}" FontAttributes="Italic" TextDecorations="Underline" ></Span>
+                                                        <Span Text="  "></Span>
+                                                        <Span Text="{Binding name}"></Span>
+                                                       
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                           
+                                        </StackLayout>
+                                       
+                                        <CheckBox Grid.Row="0"  Grid.Column="1" Color="{StaticResource TaxesYOtrosGreenColor}" Margin="0,5,0,5"  ScaleX="1.5" ScaleY="1.5"  WidthRequest="50" IsChecked="{Binding status}" IsEnabled="false"/>
+
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer 
+                                NumberOfTapsRequired="1"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:AboutViewModel}}, Path=ItemTapped}"		
+                                CommandParameter="{Binding .}">
+                                            </TapGestureRecognizer>
+                                        </Grid.GestureRecognizers>
+                                    </Grid>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                    </ScrollView>
                 </StackLayout>
-            </ScrollView>
+            </StackLayout>
             <Grid BackgroundColor="Black"  Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.4*"></ColumnDefinition>
