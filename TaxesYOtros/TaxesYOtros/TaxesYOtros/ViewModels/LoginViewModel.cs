@@ -106,7 +106,7 @@ namespace TaxesYOtros.ViewModels
             String response = await textsService.getAppTexts("ES");
             await Xamarin.Essentials.SecureStorage.SetAsync("ES_TEXTS", response);
 
-            App.Current.MainPage = new LoginPage();
+            App.Current.MainPage = new AppShell();
             this.IsBusy = false;
         });
 
@@ -117,7 +117,7 @@ namespace TaxesYOtros.ViewModels
             this.textsService = DependencyService.Get<ITextService>();
             String response = await textsService.getAppTexts("EN");
             await Xamarin.Essentials.SecureStorage.SetAsync("EN_TEXTS", response);
-            App.Current.MainPage = new LoginPage();
+            App.Current.MainPage = new AppShell();
             this.IsBusy = false;
 
         });
