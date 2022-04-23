@@ -656,3 +656,7 @@ C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros.Android\obj\Debu
 C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros.Android\obj\Debug\120\stamp\_GenerateJavaStubs.stamp
 C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros.Android\obj\Debug\120\stamp\_GeneratePackageManagerJava.stamp
 C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros.Android\obj\Debug\120\stamp\_ResolveLibraryProjectImports.stamp
+C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros.Android\obj\Debug\120\res\drawable\image1.png
+C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros.Android\obj\Debug\120\res\drawable\image2.png
+C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros.Android\obj\Debug\120\res\drawable\image3.png
+C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros.Android\obj\Debug\120\res\drawable\image4.png

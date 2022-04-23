@@ -4,7 +4,7 @@
              x:Class="TaxesYOtros.Views.AboutPage"
              xmlns:vm="clr-namespace:TaxesYOtros.ViewModels"
              xmlns:fontawesome="clr-namespace:TaxesYOtros.Classes"
-             Title="{Binding Title}" BackgroundColor="black">
+               Title="{Binding TextTitle}" BackgroundColor="black">
 
     <ContentPage.BindingContext>
         <vm:AboutViewModel />
@@ -18,35 +18,16 @@
     <Grid>
         <Grid  BackgroundColor="{StaticResource TaxesYOtrosRedColor}">
             <Grid.RowDefinitions>
-                <RowDefinition>
-                    <RowDefinition.Height>
-                        <OnPlatform x:TypeArguments="GridLength">
-                            <On Platform="Android">100</On>
-                            <On Platform="iOS">80</On>
-                        </OnPlatform>
-                    </RowDefinition.Height>
-                </RowDefinition>
+
                 <RowDefinition Height="*" />
                 <RowDefinition Height="100" />
             </Grid.RowDefinitions>
-            <StackLayout Grid.Row="0" Orientation="Vertical"   >
 
-                <Image HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="300"  Source="logo.png"/>
-                <StackLayout.Padding>
-                    <OnPlatform x:TypeArguments="Thickness">
-                        <On Platform="iOS" Value="0,0,0,0" />
-                        <On Platform="Android" Value="0,20,0,0" />
-                    </OnPlatform>
-                </StackLayout.Padding>
-            </StackLayout>
-            <StackLayout Grid.Row="1" BackgroundColor="White">
+            <StackLayout Grid.Row="0" BackgroundColor="White">
                 <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
-                    <Label TextColor="black" Text="Primero Nuestros Clientes" FontSize="Title"/>
-                    <!--<Label TextColor="black" Text="Nuestra misión es brindar a nuestros clientes los más altos estándares de satisfacción con nuestros servicios. Buscando siempre estar actualizados en todo lo relacionado con la legislación de impuestos en los Estados Unidos para dar a nuestra comunidad hispana el mejor asesoramiento en materia tributaria." FontSize="16" Padding="0,0,0,0"/>-->
-
-                    <Label TextColor="black" Margin="0,20,0,20" Text="A continuación el estado de su información por secciones. Su solicitud será atendida solo si todas las secciones están completas." FontSize="16" Padding="0,0,0,0"/>
-
-                    <ScrollView>
+                    <Label TextColor="black" Text="{Binding TextWelcomeTitle}" FontAttributes="Bold" FontSize="Title"/>
+                    <Label TextColor="black" Margin="0,20,0,20" Text="{Binding TextWelcomeMessage}" FontSize="16" Padding="0,0,0,0"/>
+                   <ScrollView>
                         <StackLayout BindableLayout.ItemsSource="{Binding Sections}">
                             <BindableLayout.ItemTemplate>
                                 <DataTemplate>
@@ -68,13 +49,13 @@
                                                         <Span TextColor="Gray" Text="{x:Static fontawesome:FontAwesomeIcons.Asterisk}" FontSize="Large" FontFamily="{StaticResource FontAwesomeSolid}" FontAttributes="Italic" TextDecorations="Underline" ></Span>
                                                         <Span Text="  "></Span>
                                                         <Span Text="{Binding name}"></Span>
-                                                       
+
                                                     </FormattedString>
                                                 </Label.FormattedText>
                                             </Label>
-                                           
+
                                         </StackLayout>
-                                       
+
                                         <CheckBox Grid.Row="0"  Grid.Column="1" Color="{StaticResource TaxesYOtrosGreenColor}" Margin="0,5,0,5"  ScaleX="1.5" ScaleY="1.5"  WidthRequest="50" IsChecked="{Binding status}" IsEnabled="false"/>
 
                                         <Grid.GestureRecognizers>
@@ -86,26 +67,63 @@
                                         </Grid.GestureRecognizers>
                                     </Grid>
                                 </DataTemplate>
-                            </BindableLayout.ItemTemplate>
+                            </BindableLayout.ItemTemplate>                            
                         </StackLayout>
+             
                     </ScrollView>
                 </StackLayout>
+            
             </StackLayout>
-            <Grid BackgroundColor="Black"  Grid.Row="2">
+            <Grid BackgroundColor="White"  Grid.Row="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.4*"></ColumnDefinition>
-                    <ColumnDefinition Width="0.3*"></ColumnDefinition>
-                    <ColumnDefinition Width="0.3*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.25*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.25*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.25*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.25*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <StackLayout  Grid.Column="0" Padding="0,33,10,0">
-                    <Label VerticalOptions="Start" Text="{Binding TextCambiarIdioma}" HorizontalOptions="End" TextColor="white"></Label>
+                <StackLayout  Grid.Column="0" Padding="5">
+                    <Image Source="image1.png" HorizontalOptions="Center">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer 
+                                NumberOfTapsRequired="1"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:AboutViewModel}}, Path=ImageTapped}"		
+                                CommandParameter="1">
+                            </TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+                    </Image>
                 </StackLayout>
-                <StackLayout  Grid.Column="1"  Padding="0,20,0,0">
-                    <Button VerticalOptions="Start" Margin="2,0,2,0" Command="{Binding SpanishCommand}"   BackgroundColor="{StaticResource TaxesYOtrosGreenColor}" Text="Español"></Button>
+                <StackLayout  Grid.Column="1"  Padding="5">
+                    <Image Source="image2.png" HorizontalOptions="Center">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer 
+                                NumberOfTapsRequired="1"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:AboutViewModel}}, Path=ImageTapped}"		
+                                CommandParameter="2">
+                            </TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+                    </Image>
                 </StackLayout>
-                <StackLayout Grid.Column="2"  Padding="0,20,0,0">
-                    <Button VerticalOptions="Start" Margin="2,0,2,0" Command="{Binding EnglishCommand}" BackgroundColor="{StaticResource TaxesYOtrosGreenColor}" Text="English"></Button>
-
+                <StackLayout Grid.Column="2"  Padding="5">
+                    <Image Source="image3.png" HorizontalOptions="Center">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer 
+                                NumberOfTapsRequired="1"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:AboutViewModel}}, Path=ImageTapped}"		
+                                CommandParameter="3">
+                            </TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
+                <StackLayout Grid.Column="3"  Padding="5">
+                    <Image Source="image4.png" HorizontalOptions="Center">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer 
+                                NumberOfTapsRequired="1"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:AboutViewModel}}, Path=ImageTapped}"		
+                                CommandParameter="4">
+                            </TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+                    </Image>
                 </StackLayout>
             </Grid>
         </Grid>

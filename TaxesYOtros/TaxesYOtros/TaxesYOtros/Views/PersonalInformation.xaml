@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TaxesYOtros.Views.PersonalInformation"   xmlns:vm="clr-namespace:TaxesYOtros.ViewModels" 
+             xmlns:behaviors="clr-namespace:TaxesYOtros.Behaviors"
+           xmlns:fontawesome="clr-namespace:TaxesYOtros.Classes"
+             Title="{Binding TextPersonalInformationTitle}"
+           >
+    <ContentPage.BindingContext>
+        <vm:PersonalInformationViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid>
+            <Grid ColumnSpacing="0" BackgroundColor="{StaticResource TaxesYOtrosRedColor}" Margin="0" RowSpacing="0" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+               
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>               
+                <ScrollView VerticalScrollBarVisibility="Always"  Grid.Row="0" Orientation="Vertical" Padding="30,10,30,0" BackgroundColor="White">
+                    <StackLayout  Spacing="3">
+                        <!--<StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="0,20,0,20">
+                            <Label Text="{x:Static fontawesome:FontAwesomeIcons.UserPlus}"  FontFamily="{StaticResource FontAwesomeSolid}" FontSize="30" />
+                            <Label BackgroundColor="white" TextColor="Black"  Text="{Binding Text_Register}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"  FontAttributes="Bold" FontSize="Title"></Label>
+                        </StackLayout>-->
+
+                  
+                        <!--Nombre-->
+                        <Label TextColor="Black" Margin="0,10,0,0"  Text="{Binding Text_FirstName}"  HorizontalTextAlignment="Start" FontSize="Medium" FontAttributes="Bold"></Label>
+
+                        <Entry FontSize="Large" Margin="0,0,0,0" Placeholder="{Binding Text_FirstName_PlaceHolder}"   Text="{Binding FirstName.Value, Mode=TwoWay}">
+                            <Entry.Behaviors>
+                                <behaviors:EventToCommandBehavior EventName="Unfocused" Command="{Binding ValidateFirstNameCodeCommand}" />
+                            </Entry.Behaviors>
+                        </Entry>
+                        <Label  Text="{Binding FirstNameError, Mode=TwoWay}" TextColor="{StaticResource TaxesYOtrosRedColor}" FontAttributes="Bold"></Label>
+
+
+                        <!--Apellido-->
+                        <Label TextColor="Black" Margin="0,10,0,0"  Text="{Binding Text_LastName}"  HorizontalTextAlignment="Start" FontSize="Medium" FontAttributes="Bold"></Label>
+
+                        <Entry FontSize="Large" Margin="0,0,0,0" Placeholder="{Binding Text_LastName_PlaceHolder}"                          Text="{Binding LastName.Value, Mode=TwoWay}">
+                            <Entry.Behaviors>
+                                <behaviors:EventToCommandBehavior EventName="Unfocused" Command="{Binding ValidateLastNameCodeCommand}" />
+                            </Entry.Behaviors>
+                        </Entry>
+                        <Label  Text="{Binding LastNameError, Mode=TwoWay}" TextColor="{StaticResource TaxesYOtrosRedColor}" FontAttributes="Bold"></Label>
+
+                        <!--Sufix-->
+                        <Label TextColor="Black" Margin="0,10,0,0"  Text="{Binding Text_Sufix}"  HorizontalTextAlignment="Start" FontSize="Medium" FontAttributes="Bold"></Label>
+
+                        <Entry FontSize="Large" Margin="0,0,0,0" Placeholder="{Binding Text_Sufix_PlaceHolder}"   Text="{Binding Sufix.Value, Mode=TwoWay}">
+                            <Entry.Behaviors>
+                                <behaviors:EventToCommandBehavior EventName="Unfocused" Command="{Binding ValidateSufixCodeCommand}" />
+                            </Entry.Behaviors>
+                        </Entry>
+                        <Label  Text="{Binding SufixError, Mode=TwoWay}" TextColor="{StaticResource TaxesYOtrosRedColor}" FontAttributes="Bold"></Label>
+
+                        <!--Email-->
+                        <Label TextColor="Black" Margin="0,10,0,0"  Text="{Binding Text_EmailAddress}"  HorizontalTextAlignment="Start" FontSize="Medium" FontAttributes="Bold"></Label>
+                        <Entry FontSize="Large" Margin="0,0,0,0" Placeholder="{Binding Text_EmailAddress_PlaceHolder}" Keyboard="Email" Text="{Binding Email.Value, Mode=TwoWay}">
+                            <Entry.Behaviors>
+                                <behaviors:EventToCommandBehavior EventName="Unfocused" Command="{Binding ValidateEmailCodeCommand}" />
+                            </Entry.Behaviors>
+                        </Entry>
+                        <Label  Text="{Binding EmailError, Mode=TwoWay}" TextColor="{StaticResource TaxesYOtrosRedColor}" FontAttributes="Bold"></Label>
+
+
+
+                        <!--SSN-->
+                        <Label TextColor="Black" Margin="0,10,0,0"  Text="{Binding Text_SSN}"  HorizontalTextAlignment="Start" FontSize="Medium" FontAttributes="Bold"></Label>
+
+                        <Entry FontSize="Large" Margin="0,0,0,0" Placeholder="{Binding Text_SSN_PlaceHolder}"  Text="{Binding SSN.Value, Mode=TwoWay}">
+                            <Entry.Behaviors>
+                                <behaviors:EventToCommandBehavior EventName="Unfocused" Command="{Binding ValidateSSNCodeCommand}" />
+                            </Entry.Behaviors>
+                        </Entry>
+                        <Label  Text="{Binding SSNError, Mode=TwoWay}" TextColor="{StaticResource TaxesYOtrosRedColor}" FontAttributes="Bold"></Label>
+
+                        <!--DOB-->
+                        <Label TextColor="Black" Margin="0,10,0,0"  Text="{Binding Text_DOB}"  HorizontalTextAlignment="Start" FontSize="Medium" FontAttributes="Bold"></Label>
+                        <DatePicker FontSize="Large" Margin="0,0,0,0" Date="{Binding DOB.Value, Mode=TwoWay}">
+                            <DatePicker.Behaviors>
+                                <behaviors:EventToCommandBehavior EventName="Unfocused" Command="{Binding ValidateDOBCodeCommand}" />
+                            </DatePicker.Behaviors>
+
+                        </DatePicker>                       
+                        <Label  Text="{Binding DOBError, Mode=TwoWay}" TextColor="{StaticResource TaxesYOtrosRedColor}" FontAttributes="Bold"></Label>
+
+
+                        <!--OCUPATION-->
+                        <Label TextColor="Black" Margin="0,10,0,0"  Text="{Binding Text_Ocupation}"  HorizontalTextAlignment="Start" FontSize="Medium" FontAttributes="Bold"></Label>
+
+                        <Entry FontSize="Large" Margin="0,0,0,0" Placeholder="{Binding Text_Ocupation_PlaceHolder}"  Text="{Binding Ocupation.Value, Mode=TwoWay}">
+                            <Entry.Behaviors>
+                                <behaviors:EventToCommandBehavior EventName="Unfocused" Command="{Binding ValidateOcupationCodeCommand}" />
+                            </Entry.Behaviors>
+                        </Entry>
+                        <Label  Text="{Binding OcupationError, Mode=TwoWay}" TextColor="{StaticResource TaxesYOtrosRedColor}" FontAttributes="Bold"></Label>
+
+                        
+                        <!--Telefonos-->
+                        <Label TextColor="Black" Margin="0,10,0,0"  Text="{Binding Text_Cellphone}"  HorizontalTextAlignment="Start" FontSize="Medium" FontAttributes="Bold"></Label>
+
+                        <Entry FontSize="Large" Margin="0,0,0,0"  Placeholder="{Binding Text_Cellphone_PlaceHolder}"   Keyboard="Numeric" Text="{Binding Phone.Value, Mode=TwoWay}">
+                            <Entry.Behaviors>
+                                <behaviors:EventToCommandBehavior EventName="Unfocused" Command="{Binding ValidatePhoneCodeCommand}" />
+                            </Entry.Behaviors>
+                        </Entry>
+                        <Label  Text="{Binding PhoneError, Mode=TwoWay}" TextColor="{StaticResource TaxesYOtrosRedColor}" FontAttributes="Bold"></Label>
+
+
+
+                        <!--Telefonos cARRIER-->
+                        <Label TextColor="Black" Margin="0,10,0,0"  Text="{Binding Text_Cellphone_Carrier}"  HorizontalTextAlignment="Start" FontSize="Medium" FontAttributes="Bold"></Label>
+
+                        <Entry FontSize="Large" Margin="0,0,0,0"  Placeholder="{Binding Text_Cellphone_Carrier_PlaceHolder}"   Keyboard="Numeric" Text="{Binding PhoneCarrier.Value, Mode=TwoWay}">
+                            <Entry.Behaviors>
+                                <behaviors:EventToCommandBehavior EventName="Unfocused" Command="{Binding ValidatePhoneCarrierCodeCommand}" />
+                            </Entry.Behaviors>
+                        </Entry>
+                        <Label  Text="{Binding PhoneCarrierError, Mode=TwoWay}" TextColor="{StaticResource TaxesYOtrosRedColor}" FontAttributes="Bold"></Label>
+
+
+                        <Label  Text="{Binding SavingError, Mode=TwoWay}" TextColor="{StaticResource TaxesYOtrosRedColor}" FontAttributes="Bold"></Label>
+
+
+                        <Button Margin="0,10,0,20" Command="{Binding SaveOnClickCommand}" Text="{Binding Text_Save}" TextColor="White"  
+                    FontAttributes="Bold" FontSize="Large" HorizontalOptions="FillAndExpand"  
+                    BackgroundColor="{StaticResource TaxesYOtrosRedColor}" />
+
+                    </StackLayout>
+                </ScrollView>
+       
+
+
+            </Grid>
+            <ActivityIndicator x:Name="activity" 
+                       IsRunning="{Binding IsBusy}"  
+                       IsEnabled="{Binding IsBusy}" 
+                       IsVisible="{Binding IsBusy}" HorizontalOptions="Center" VerticalOptions="Center"
+                       BackgroundColor="Transparent"/>
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>

@@ -25,25 +25,26 @@ namespace TaxesYOtros.ViewModels
                 Title = "";
 
                 sections = new ObservableCollection<Section>();
-                sections.Add(new Section(Constants.Sections.PERSONAL_INFO, "Información Personal", false));
-                sections.Add(new Section(Constants.Sections.SPOUSE_INFO, "Información del Cónyuge", false));
-                sections.Add(new Section(Constants.Sections.ADDRESS_INFO, "Información de Residencia", true));
-                sections.Add(new Section(Constants.Sections.BANK_INFO, "Información Bancaria", false));
-                sections.Add(new Section(Constants.Sections.DEPENDENTS_INFO, "Dependientes", false));
-                sections.Add(new Section(Constants.Sections.DOCUMENTS, "Documentos", false));
+                sections.Add(new Section(Constants.Sections.PERSONAL_INFO, TextPersonalInformationTitle, false));
+                sections.Add(new Section(Constants.Sections.SPOUSE_INFO, TextSpouseInformationTitle, false));
+                sections.Add(new Section(Constants.Sections.ADDRESS_INFO, TextHomeAddressInformationTitle, false));
+                sections.Add(new Section(Constants.Sections.BANK_INFO, TextBankInformationTitle, false));
+                sections.Add(new Section(Constants.Sections.DEPENDENTS_INFO, TextDependentsTitle, false));
+                sections.Add(new Section(Constants.Sections.DOCUMENTS, TextDocumentsTitle, false));
 
                 SetProperty(ref sections, sections);
 
-                
+
             });
 
             ItemTapped = new Command<Section>(OnItemSelected);
+            ImageTapped = new Command<String>(OnImageTapped);
         }
         #endregion
 
         #region Private properties       
         private ObservableCollection<Section> sections;
-      
+
         #endregion
 
         #region Public properties
@@ -58,17 +59,64 @@ namespace TaxesYOtros.ViewModels
         #endregion
 
         #region Commands
+
+        async void OnImageTapped(String image)
+        {
+            switch (image)
+            {
+                case "3":
+                    await Browser.OpenAsync("https://www.irs.gov/es/refunds", new BrowserLaunchOptions
+                    {
+                        LaunchMode = BrowserLaunchMode.SystemPreferred,
+                        TitleMode = BrowserTitleMode.Show,
+                        PreferredToolbarColor = (Color)App.Current.Resources["TaxesYOtrosRedColor"],
+                        PreferredControlColor = (Color)App.Current.Resources["TaxesYOtrosRedColor"]
+                    });
+                    break;
+                case "4":
+                    await Browser.OpenAsync("https://www.ftb.ca.gov/refund/status-es.asp", new BrowserLaunchOptions
+                    {
+                        LaunchMode = BrowserLaunchMode.SystemPreferred,
+                        TitleMode = BrowserTitleMode.Show,
+                        PreferredToolbarColor = (Color)App.Current.Resources["TaxesYOtrosRedColor"],
+                        PreferredControlColor = (Color)App.Current.Resources["TaxesYOtrosRedColor"]
+                    });
+                    break;
+                default:
+                    break;
+            }
+
+        }
         async void OnItemSelected(Section item)
         {
             if (item == null)
                 return;
 
-         
-            await App.Current.MainPage.DisplayAlert("Taxes y Otros", item.name, "Ok");
-            //// This will push the ItemDetailPage onto the navigation stack
-            //await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}");
+
+            switch (item.sect)
+            {
+                case Constants.Sections.PERSONAL_INFO:
+                    Application.Current.MainPage = new AppShell();
+                    await Shell.Current.GoToAsync($"//{nameof(PersonalInformation)}");
+                    break;
+                case Constants.Sections.SPOUSE_INFO:
+                    break;
+                case Constants.Sections.ADDRESS_INFO:
+                    break;
+                case Constants.Sections.BANK_INFO:
+                    break;
+                case Constants.Sections.DEPENDENTS_INFO:
+                    break;
+                case Constants.Sections.DOCUMENTS:
+                    break;
+                default:
+                    break;
+            }
+
         }
         public Command<Section> ItemTapped { get; }
+        public Command<String> ImageTapped { get; }
+        
 
         public ICommand OpenWebCommand { get; }
 
@@ -79,6 +127,7 @@ namespace TaxesYOtros.ViewModels
 
             String response = await textsService.getAppTexts("ES");
             await Xamarin.Essentials.SecureStorage.SetAsync("ES_TEXTS", response);
+            Application.Current.MainPage = new AppShell();
             await Shell.Current.GoToAsync($"//{nameof(AboutPage)}");
             this.IsBusy = false;
         });
@@ -90,6 +139,7 @@ namespace TaxesYOtros.ViewModels
             this.textsService = DependencyService.Get<ITextService>();
             String response = await textsService.getAppTexts("EN");
             await Xamarin.Essentials.SecureStorage.SetAsync("EN_TEXTS", response);
+            Application.Current.MainPage = new AppShell();
             await Shell.Current.GoToAsync($"//{nameof(AboutPage)}");
             this.IsBusy = false;
 
@@ -97,7 +147,7 @@ namespace TaxesYOtros.ViewModels
         #endregion
 
 
-       
+
         #region Screen text
 
         public string TextCambiarIdioma
@@ -107,6 +157,31 @@ namespace TaxesYOtros.ViewModels
                 return GetLocalizedText(LanguageToken.LOGIN9, "Change Language?");
             }
         }
+
+
+        public string TextWelcomeTitle
+        {
+            get
+            {
+                return GetLocalizedText(LanguageToken.WELCOMETITLE, "Bienvenido a Taxes y Otros");
+            }
+        }
+        public string TextWelcomeMessage
+        {
+            get
+            {
+                return GetLocalizedText(LanguageToken.WELCOMEMESSAGE, "Por favor revise cada una de las secciones listadas a continuación:");
+            }
+        }
+
+        public string TextTitle
+        {
+            get
+            {
+                return GetLocalizedTextStatic(LanguageToken.AMIDONE, "¿Está todo Completo?");
+            }
+        }
+
 
         #endregion
     }

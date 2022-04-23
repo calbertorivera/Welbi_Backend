@@ -80,15 +80,16 @@
         FlyoutDisplayOptions="AsMultipleItems" will create a separate flyout item for each child element    
         https://docs.microsoft.com/dotnet/api/xamarin.forms.shellgroupitem.flyoutdisplayoptions?view=xamarin-forms
     -->
-    <FlyoutItem Title="Taxes y Otros" Icon="icon_about.png">
+    <FlyoutItem x:Name="AboutLabel" Icon="icon_about.png">
         <ShellContent Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
     </FlyoutItem>
-    <FlyoutItem Title="Browse" Icon="icon_feed.png">
-        <ShellContent Route="ItemsPage" ContentTemplate="{DataTemplate local:ItemsPage}" />
+
+    <FlyoutItem x:Name="PersonalInfo" Icon="icon_feed.png">
+        <ShellContent Route="PersonalInformation"  ContentTemplate="{DataTemplate local:PersonalInformation}"/>
     </FlyoutItem>
 
     <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->
-    <MenuItem Text="Logout" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked">
+    <MenuItem x:Name="Logout" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked">
     </MenuItem>
 
     <!--
@@ -102,16 +103,47 @@
         <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage}" />
     </TabBar>
 
+
+    <!-- // This header appears at the top of the Flyout.
+    // https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/flyout#flyout-header    -->
+    <Shell.FlyoutHeaderTemplate>
+        <DataTemplate>
+            <StackLayout Background="{StaticResource TaxesYOtrosRedColor}" Padding="20">
+                <Image HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="300"  Source="logo.png"/>
+            </StackLayout>
+        </DataTemplate>
+    </Shell.FlyoutHeaderTemplate>
+
+    <Shell.FlyoutFooterTemplate>
+        <DataTemplate>
+            <Grid>
+            <Grid BackgroundColor="Black" x:Name="GridLanguage"  Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.4*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.3*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.3*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+              
+                <StackLayout  Grid.Column="1"  Padding="0,20,0,0">
+                    <Button VerticalOptions="Start" Margin="2,0,2,0" x:Name="btnSpanish" Clicked="btnSpanish_Clicked" BackgroundColor="{StaticResource TaxesYOtrosGreenColor}" Text="Español"></Button>
+                </StackLayout>
+                <StackLayout Grid.Column="2"  Padding="0,20,0,0">
+                    <Button VerticalOptions="Start" Margin="2,0,2,0" x:Name="btnEnglish" Clicked="btnEnglish_Clicked" BackgroundColor="{StaticResource TaxesYOtrosGreenColor}" Text="English"></Button>
+
+                </StackLayout>
+            </Grid>
+            <ActivityIndicator x:Name="activity" 
+                       IsRunning="{Binding IsBusy}"  
+                       IsEnabled="{Binding IsBusy}" 
+                       IsVisible="{Binding IsBusy}" HorizontalOptions="Center" VerticalOptions="Center"
+                       BackgroundColor="Transparent"/>
+            </Grid>
+        </DataTemplate>
+    </Shell.FlyoutFooterTemplate>
     <!-- Optional Templates 
     // These may be provided inline as below or as separate classes.
 
-    // This header appears at the top of the Flyout.
-    // https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/flyout#flyout-header
-    <Shell.FlyoutHeaderTemplate>
-        <DataTemplate>
-            <Grid>ContentHere</Grid>
-        </DataTemplate>
-    </Shell.FlyoutHeaderTemplate>
+
 
     // ItemTemplate is for ShellItems as displayed in a Flyout
     // https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/flyout#define-flyoutitem-appearance

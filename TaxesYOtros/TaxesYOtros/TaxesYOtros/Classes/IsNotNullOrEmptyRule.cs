@@ -15,8 +15,22 @@ namespace TaxesYOtros.Classes
                 return false;
             }
 
-            var str = value as string;
-            return !string.IsNullOrWhiteSpace(str);
+
+            if (typeof(T) == typeof(String))
+            {
+                var str = value as string;
+                return !string.IsNullOrWhiteSpace(str);
+            }
+
+            if (typeof(T) == typeof(DateTime?) || typeof(T) == typeof(DateTime))
+            {
+                return value != null;
+            }
+
+            throw new Exception("Type not supported");
+
+
+
         }
     }
 }

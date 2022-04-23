@@ -22,3 +22,4 @@ C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros\obj\Debug\netsta
 C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros\obj\Debug\netstandard2.0\Views\Register.xaml.g.cs
 C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros\obj\Debug\netstandard2.0\TaxesYOtros.csproj.AssemblyReference.cache
 C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros\obj\Debug\netstandard2.0\refint\TaxesYOtros.dll
+C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros\obj\Debug\netstandard2.0\Views\PersonalInformation.xaml.g.cs

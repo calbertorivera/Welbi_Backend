@@ -17,7 +17,7 @@ namespace TaxesYOtros.Classes
                 return false;
             }
 
-            var str = value as string;
+            var str = value.ToString();
 
             try
             {

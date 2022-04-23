@@ -62,11 +62,8 @@ namespace TaxesYOtros.ViewModels
             changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
-
-
-        public string GetLocalizedText(LanguageToken token, string defaultText)
+        public  static string GetLocalizedTextStatic(LanguageToken token, string defaultText)
         {
-
             var lan = Xamarin.Essentials.SecureStorage.GetAsync("lan").Result;
             if (lan != null)
             {
@@ -88,6 +85,12 @@ namespace TaxesYOtros.ViewModels
                 }
             }
             return defaultText;
+        }
+
+        public string GetLocalizedText(LanguageToken token, string defaultText)
+        {
+
+              return GetLocalizedTextStatic(token, defaultText);
 
         }
 
@@ -125,6 +128,48 @@ namespace TaxesYOtros.ViewModels
             }
         }
 
+        public string TextPersonalInformationTitle
+        {
+            get
+            {
+                return GetLocalizedText(LanguageToken.SECTION1, "Información Personal");
+            }
+        }
+        public string TextSpouseInformationTitle
+        {
+            get
+            {
+                return GetLocalizedText(LanguageToken.SECTION2, "Información del Cónyugue");
+            }
+        }
+        public string TextHomeAddressInformationTitle
+        {
+            get
+            {
+                return GetLocalizedText(LanguageToken.SECTION3, "Información de Residencia");
+            }
+        }
+        public string TextBankInformationTitle
+        {
+            get
+            {
+                return GetLocalizedText(LanguageToken.SECTION4, "Información Bancaria");
+            }
+        }
+        public string TextDependentsTitle
+        {
+            get
+            {
+                return GetLocalizedText(LanguageToken.SECTION5, "Dependientes");
+            }
+        }
+        public string TextDocumentsTitle
+        {
+            get
+            {
+                return GetLocalizedText(LanguageToken.SECTION6, "Documentos");
+            }
+        }
         #endregion
 
     }
