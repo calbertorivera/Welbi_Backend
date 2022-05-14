@@ -1,7 +1,9 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using RestSharp;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using TaxesYOtros.Classes;
@@ -29,22 +31,41 @@ namespace TaxesYOtros.Services.User
         public async Task<ServiceStatusResponse> ForgotPasswordAsync(string username)
         {
             var request = new RestRequest(GlobalSetting.Instance.ForgotPasswordEndpoint, Method.Post);
-            request.AddParameter("username", username, ParameterType.GetOrPost);         
+            request.AddParameter("username", username, ParameterType.GetOrPost);
 
             var response = await DependencyService.Get<IRequestProvider>().ExecuteAsync<ServiceStatusResponse>(request);
 
             return response;
         }
 
+        //public async Task<JObject> GetUser(string email, string token)
+        //{
+
+        //    var formContent = new FormUrlEncodedContent(new[]{    new KeyValuePair<string, string>("username", email),    new KeyValuePair<string, string>("token", token)});
+        //    var response = await DependencyService.Get<IRequestProvider>().GetJsonAsync(GlobalSetting.Instance.GetUserInfo, formContent);
+        //    return JObject.Parse(response);
+        //}
+        public async Task<JObject> GetUser(string token, string session_id)
+        {
+
+            var request = new RestRequest(GlobalSetting.Instance.GetUserInfo, Method.Post);
+            request.AddParameter("token", token, ParameterType.GetOrPost);
+            request.AddParameter("user_id", session_id, ParameterType.GetOrPost);
+            
+            var response = await DependencyService.Get<IRequestProvider>().ExecuteAsync<String>(request);
+
+            return JObject.Parse(response);
+        }
+
         public async Task<LoginResponse> LoginAsync(string username, string password, string deviceId)
         {
-            var request = new RestRequest(GlobalSetting.Instance.LoginEndpoint,Method.Post);
+            var request = new RestRequest(GlobalSetting.Instance.LoginEndpoint, Method.Post);
             request.AddParameter("username", username, ParameterType.GetOrPost);
             request.AddParameter("password", password, ParameterType.GetOrPost);
             request.AddParameter("deviceId", deviceId, ParameterType.GetOrPost);
-           
+
             var response = await DependencyService.Get<IRequestProvider>().ExecuteAsync<LoginResponse>(request);
-            
+
             return response;
         }
 

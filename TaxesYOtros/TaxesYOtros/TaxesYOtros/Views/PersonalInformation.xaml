@@ -14,11 +14,11 @@
             <Grid ColumnSpacing="0" BackgroundColor="{StaticResource TaxesYOtrosRedColor}" Margin="0" RowSpacing="0" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
-               
+
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>               
+                </Grid.ColumnDefinitions>
                 <ScrollView VerticalScrollBarVisibility="Always"  Grid.Row="0" Orientation="Vertical" Padding="30,10,30,0" BackgroundColor="White">
                     <StackLayout  Spacing="3">
                         <!--<StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="0,20,0,20">
@@ -26,7 +26,7 @@
                             <Label BackgroundColor="white" TextColor="Black"  Text="{Binding Text_Register}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"  FontAttributes="Bold" FontSize="Title"></Label>
                         </StackLayout>-->
 
-                  
+
                         <!--Nombre-->
                         <Label TextColor="Black" Margin="0,10,0,0"  Text="{Binding Text_FirstName}"  HorizontalTextAlignment="Start" FontSize="Medium" FontAttributes="Bold"></Label>
 
@@ -86,7 +86,7 @@
                                 <behaviors:EventToCommandBehavior EventName="Unfocused" Command="{Binding ValidateDOBCodeCommand}" />
                             </DatePicker.Behaviors>
 
-                        </DatePicker>                       
+                        </DatePicker>
                         <Label  Text="{Binding DOBError, Mode=TwoWay}" TextColor="{StaticResource TaxesYOtrosRedColor}" FontAttributes="Bold"></Label>
 
 
@@ -100,16 +100,24 @@
                         </Entry>
                         <Label  Text="{Binding OcupationError, Mode=TwoWay}" TextColor="{StaticResource TaxesYOtrosRedColor}" FontAttributes="Bold"></Label>
 
-                        
-                        <!--Telefonos-->
-                        <Label TextColor="Black" Margin="0,10,0,0"  Text="{Binding Text_Cellphone}"  HorizontalTextAlignment="Start" FontSize="Medium" FontAttributes="Bold"></Label>
+             
+                        <!--Marital Status-->
+                        <Label TextColor="Black" Margin="0,10,0,0"  Text="{Binding Text_MaritalStatus}"  HorizontalTextAlignment="Start" FontSize="Medium" FontAttributes="Bold"></Label>
+                        <Picker FontSize="Large" Title="{Binding Text_MaritalStatus}" ItemsSource="{Binding ListMaritalStatus}" ItemDisplayBinding="{Binding Description}" SelectedItem="{Binding MaritalStatus.Value}">
+                            <Picker.Behaviors>
+                                <behaviors:EventToCommandBehavior EventName="SelectedIndexChanged" Command="{Binding MaritalStatusCommand}" />
+                            </Picker.Behaviors>
+                        </Picker>
+                        <Label  Text="{Binding MaritalStatusError, Mode=TwoWay}" TextColor="{StaticResource TaxesYOtrosRedColor}" FontAttributes="Bold"></Label>
 
-                        <Entry FontSize="Large" Margin="0,0,0,0"  Placeholder="{Binding Text_Cellphone_PlaceHolder}"   Keyboard="Numeric" Text="{Binding Phone.Value, Mode=TwoWay}">
-                            <Entry.Behaviors>
-                                <behaviors:EventToCommandBehavior EventName="Unfocused" Command="{Binding ValidatePhoneCodeCommand}" />
-                            </Entry.Behaviors>
-                        </Entry>
-                        <Label  Text="{Binding PhoneError, Mode=TwoWay}" TextColor="{StaticResource TaxesYOtrosRedColor}" FontAttributes="Bold"></Label>
+                        <!--Has Dependents-->
+                        <Label TextColor="Black" Margin="0,10,0,0"  Text="{Binding Text_HasDependents}"  HorizontalTextAlignment="Start" FontSize="Medium" FontAttributes="Bold"></Label>
+                        <Picker FontSize="Large" Title="{Binding Text_HasDependents}" ItemsSource="{Binding YesNoList}" ItemDisplayBinding="{Binding Description}" SelectedItem="{Binding HasDependents.Value}">
+                            <Picker.Behaviors>
+                                <behaviors:EventToCommandBehavior EventName="SelectedIndexChanged" Command="{Binding HasDependentsCommand}" />
+                            </Picker.Behaviors>
+                        </Picker>
+                        <Label  Text="{Binding HasDependentsError, Mode=TwoWay}" TextColor="{StaticResource TaxesYOtrosRedColor}" FontAttributes="Bold"></Label>
 
 
 
@@ -122,8 +130,6 @@
                             </Entry.Behaviors>
                         </Entry>
                         <Label  Text="{Binding PhoneCarrierError, Mode=TwoWay}" TextColor="{StaticResource TaxesYOtrosRedColor}" FontAttributes="Bold"></Label>
-
-
                         <Label  Text="{Binding SavingError, Mode=TwoWay}" TextColor="{StaticResource TaxesYOtrosRedColor}" FontAttributes="Bold"></Label>
 
 
@@ -133,7 +139,7 @@
 
                     </StackLayout>
                 </ScrollView>
-       
+
 
 
             </Grid>

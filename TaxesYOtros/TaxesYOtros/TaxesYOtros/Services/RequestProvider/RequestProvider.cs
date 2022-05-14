@@ -146,7 +146,7 @@ namespace TaxesYOtros.Services.RequestProvider
         {
             var cancellationTokenSource = new CancellationTokenSource();
             Console.WriteLine($"*** SERVICE ACTION => {request.Resource}");
-                               
+                                          
             var response = await App.ServiceClient.ExecuteAsync<T>(request, cancellationTokenSource.Token);
 
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -170,18 +170,36 @@ namespace TaxesYOtros.Services.RequestProvider
             return null;
         }
 
-        public async Task<string> GetJsonAsync(String url)
+
+        public async Task<string> GetJsonAsync(String url, FormUrlEncodedContent formC = null, String Method = "GET")
         {
             var cancellationTokenSource = new CancellationTokenSource();
             HttpClient myClient = new HttpClient();
 
-            var response = await myClient.GetAsync(url);
-            if (response.IsSuccessStatusCode)
+            if (Method=="GET")
             {
-                var content = await response.Content.ReadAsStringAsync();
-                return content;
+                var response = await myClient.GetAsync(url);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    return content;
+                }
+                return null;
+            }
+            else if (Method == "POST")
+            {
+                var response = await myClient.PostAsync(url,formC);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    return content;
+                }
+                return null;
             }
             return null;
+            
         }
 
     }

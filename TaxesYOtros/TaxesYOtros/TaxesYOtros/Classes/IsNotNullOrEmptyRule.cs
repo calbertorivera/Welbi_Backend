@@ -27,6 +27,12 @@ namespace TaxesYOtros.Classes
                 return value != null;
             }
 
+            if (typeof(T) == typeof(PickerItem))
+            {
+                var str = value as PickerItem;
+                return str!=null;
+            }
+
             throw new Exception("Type not supported");
 
 

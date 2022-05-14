@@ -52,11 +52,6 @@ C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros.iOS\bin\iPhone\D
 C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros.iOS\bin\iPhone\Debug\zh-Hant\Xamarin.Forms.Platform.iOS.resources.dll
 C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros.iOS\bin\iPhone\Debug\TaxesYOtros.dll
 C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros.iOS\bin\iPhone\Debug\TaxesYOtros.pdb
-C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros.iOS\obj\iPhone\Debug\TaxesYOtros.iOS.csproj.AssemblyReference.cache
-C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros.iOS\obj\iPhone\Debug\TaxesYOtros.iOS.csproj.CoreCompileInputs.cache
-C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros.iOS\obj\iPhone\Debug\TaxesYOtros.iOS.csproj.CopyComplete
-C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros.iOS\obj\iPhone\Debug\TaxesYOtros.iOS.exe
-C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros.iOS\obj\iPhone\Debug\TaxesYOtros.iOS.pdb
 C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros.iOS\obj\iPhone\Debug\actool\_PartialAppManifest.items
 C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros.iOS\obj\iPhone\Debug\actool\_BundleResourceWithLogicalName.items
 C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros.iOS\obj\iPhone\Debug\actool\_ProcessedImageAssetsPath.items
@@ -68,3 +63,8 @@ C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros.iOS\obj\iPhone\D
 C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros.iOS\obj\iPhone\Debug\_ProcessedBundleResourcesPath.items
 C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros.iOS\obj\iPhone\Debug\_ProcessedContentPath.items
 C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros.iOS\obj\iPhone\Debug\optimized\
+C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros.iOS\obj\iPhone\Debug\TaxesYOtros.iOS.csproj.AssemblyReference.cache
+C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros.iOS\obj\iPhone\Debug\TaxesYOtros.iOS.csproj.CoreCompileInputs.cache
+C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros.iOS\obj\iPhone\Debug\TaxesYOtros.iOS.csproj.CopyComplete
+C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros.iOS\obj\iPhone\Debug\TaxesYOtros.iOS.exe
+C:\Users\CAlbe\source\repos\TaxesYOtros\TaxesYOtros\TaxesYOtros.iOS\obj\iPhone\Debug\TaxesYOtros.iOS.pdb

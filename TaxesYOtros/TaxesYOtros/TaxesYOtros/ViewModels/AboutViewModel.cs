@@ -1,10 +1,12 @@
 ﻿using Configuration;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using TaxesYOtros.Classes;
 using TaxesYOtros.Services.Texts;
+using TaxesYOtros.Services.User;
 using TaxesYOtros.Views;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -22,10 +24,12 @@ namespace TaxesYOtros.ViewModels
 
             base.ExecuteMethod("LoginViewModel", delegate ()
             {
+
                 Title = "";
 
                 sections = new ObservableCollection<Section>();
-                sections.Add(new Section(Constants.Sections.PERSONAL_INFO, TextPersonalInformationTitle, false));
+                bool resultSection1 = checkSection1();
+                sections.Add(new Section(Constants.Sections.PERSONAL_INFO, TextPersonalInformationTitle, resultSection1));
                 sections.Add(new Section(Constants.Sections.SPOUSE_INFO, TextSpouseInformationTitle, false));
                 sections.Add(new Section(Constants.Sections.ADDRESS_INFO, TextHomeAddressInformationTitle, false));
                 sections.Add(new Section(Constants.Sections.BANK_INFO, TextBankInformationTitle, false));
@@ -39,12 +43,34 @@ namespace TaxesYOtros.ViewModels
 
             ItemTapped = new Command<Section>(OnItemSelected);
             ImageTapped = new Command<String>(OnImageTapped);
+
+
+        }
+
+
+        private bool checkSection1()
+        {
+            var dta = UserData;
+            if (dta != null)
+            {
+                if (dta["user"] != null)
+                {
+                    if (dta["user"]["first_name"] != null)
+                    {
+                        return true;
+                    }
+
+                }
+             
+            }
+            return false;
         }
         #endregion
 
         #region Private properties       
         private ObservableCollection<Section> sections;
-
+        private IUserService userService;
+      
         #endregion
 
         #region Public properties
@@ -116,7 +142,7 @@ namespace TaxesYOtros.ViewModels
         }
         public Command<Section> ItemTapped { get; }
         public Command<String> ImageTapped { get; }
-        
+
 
         public ICommand OpenWebCommand { get; }
 

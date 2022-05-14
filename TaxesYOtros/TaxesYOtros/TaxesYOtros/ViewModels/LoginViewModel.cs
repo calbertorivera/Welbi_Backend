@@ -25,7 +25,7 @@ namespace TaxesYOtros.ViewModels
         {
             base.ExecuteMethod("LoginViewModel", delegate ()
             {
-                this.userService = DependencyService.Get<IUserService>();
+              
                 this.email = new ValidatableObject<string>();
                 this.password = new ValidatableObject<string>();
                 AddValidations();
@@ -50,7 +50,7 @@ namespace TaxesYOtros.ViewModels
         private string emailError;
         private string loginError;
         private string passwordError;
-        private IUserService userService;
+      
    
         IDevice device;
         #endregion
@@ -101,12 +101,10 @@ namespace TaxesYOtros.ViewModels
         public ICommand SpanishCommand => new Command(async () =>
         {
             this.IsBusy = true;
-            await Xamarin.Essentials.SecureStorage.SetAsync("lan", "ES");
-          
+            await Xamarin.Essentials.SecureStorage.SetAsync("lan", "ES");          
             String response = await textsService.getAppTexts("ES");
             await Xamarin.Essentials.SecureStorage.SetAsync("ES_TEXTS", response);
-
-            App.Current.MainPage = new AppShell();
+            App.Current.MainPage = new LoginPage();
             this.IsBusy = false;
         });
 
@@ -117,9 +115,9 @@ namespace TaxesYOtros.ViewModels
             this.textsService = DependencyService.Get<ITextService>();
             String response = await textsService.getAppTexts("EN");
             await Xamarin.Essentials.SecureStorage.SetAsync("EN_TEXTS", response);
-            App.Current.MainPage = new AppShell();
+            App.Current.MainPage = new LoginPage();
             this.IsBusy = false;
-
+                        
         });
 
         public ICommand ValidatePasswordCommand => new Command(() =>
@@ -176,7 +174,12 @@ namespace TaxesYOtros.ViewModels
 
                     if (response.message == "OK")
                     {
+                        await Xamarin.Essentials.SecureStorage.SetAsync("LoggedInEmail", Email.Value);
+                        await Xamarin.Essentials.SecureStorage.SetAsync("token", response.token);
                         await Xamarin.Essentials.SecureStorage.SetAsync("isLogged", "1");
+                        await Xamarin.Essentials.SecureStorage.SetAsync("user_id", response.user_id);
+                        await LoadUserData(true);
+
                         Application.Current.MainPage = new AppShell();
                         await Shell.Current.GoToAsync($"//{nameof(AboutPage)}");
                     }

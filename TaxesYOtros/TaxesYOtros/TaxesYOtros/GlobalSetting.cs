@@ -46,6 +46,7 @@ namespace TaxesYOtros
         public string ResetPasswordEndpoint { get;  set; }
         public string RegisterPasswordEndpoint { get;  set; }
         public string TextsEndpoint { get; set; }
+        public string GetUserInfo { get;  set; }
 
         private void UpdateEndpoint(string baseEndpoint)
         {
@@ -55,6 +56,7 @@ namespace TaxesYOtros
             ResetPasswordEndpoint = $"{baseEndpoint}/resetPassword.php";
             RegisterPasswordEndpoint = $"{baseEndpoint}/register.php";
             TextsEndpoint = $"{baseEndpoint}"+"/{0}.json?v="+Guid.NewGuid();
+            GetUserInfo = $"{baseEndpoint}/userInfo.php";
         }
 
             #endregion

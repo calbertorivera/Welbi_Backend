@@ -33,12 +33,23 @@ namespace TaxesYOtros.ViewModels
                 this.ssn = new ValidatableObject<string>();
                 this.dob = new ValidatableObject<DateTime?>();
                 this.ocupation = new ValidatableObject<string>();
-                this.phone = new ValidatableObject<int?>();
+                this.phone = new ValidatableObject<string>();
                 this.phoneCarrier = new ValidatableObject<string>();
+                this.maritalStatus = new ValidatableObject<PickerItem>();
+                this.hasDependents = new ValidatableObject<PickerItem>();
 
+                ListMaritalStatus = new List<PickerItem>();
+                ListMaritalStatus.Add(new PickerItem("SIN",Text_Single));
+                ListMaritalStatus.Add(new PickerItem("MAR", Text_Married));
+
+                YesNoList = new List<PickerItem>();
+                YesNoList.Add(new PickerItem("YES", Text_YES));
+                YesNoList.Add(new PickerItem("NO", Text_NO));
+
+                //Fill Form
+                FillData();
 
                 AddValidations();
-
 
                 //Password.Value = "Ju4ns31989";
 
@@ -46,6 +57,84 @@ namespace TaxesYOtros.ViewModels
             LoginCommand = new Command(OnLoginClicked);
             SaveOnClickCommand = new Command(RegisterClicked);
 
+        }
+
+        private async void FillData()
+        {
+            await LoadUserData(false);
+
+            try
+            {
+                if (this.UserData["user"] != null)
+                {
+                    this.FirstName.Value = this.UserData["user"]?["first_name"]?.ToString();
+                    this.LastName.Value = this.UserData["user"]?["last_name"]?.ToString();
+                    this.Email.Value = this.UserData["user"]?["username"]?.ToString();
+                    this.Sufix.Value = this.UserData["user"]?["sufijo"]?.ToString();
+
+                    if (this.UserData["user"]?["SSN"] != null)
+                    {
+                        String ssnFull = this.UserData["user"]?["SSN"]?.ToString();
+                        this.SSN.Value = $"###-##-#{ssnFull.Substring(ssnFull.Length-3)}" ;
+                    }
+                   
+                    if (this.UserData["user"]?["DOB"] != null)
+                    {
+                        this.DOB.Value = Convert.ToDateTime(this.UserData["user"]?["DOB"].ToString());
+                    }
+
+                    this.Ocupation.Value = this.UserData["user"]?["ocupation"]?.ToString();
+                    if (this.UserData["user"]?["phone"] != null)
+                    {
+                        this.Phone.Value = ofuscatePhone((this.UserData["user"]?["phone"].ToString()));
+                        ;
+                    }
+                    if (this.UserData["user"]?["spouse_first_name"] != null)
+                    {
+                        var itm = this.listMaritalStatus.FirstOrDefault(a => a.Id == "MAR");
+                        this.maritalStatus.Value = itm;
+                    }
+
+                    if (this.UserData["user"]?["marital_status"] != null)
+                    {
+                       var itm = this.listMaritalStatus.FirstOrDefault(a => a.Id == this.UserData["user"]?["marital_status"]?.ToString());
+                        this.maritalStatus.Value = itm;
+                    }
+
+                    if (this.UserData["dependents"] != null)
+                    {
+                        var itm = this.yesNoList.FirstOrDefault(a => a.Id == "YES");
+                        this.hasDependents.Value = itm;
+                    }
+
+                    this.PhoneCarrier.Value = this.UserData["user"]?["carrier"]?.ToString();
+                }
+            }
+            catch (Exception exc)
+            {
+                await App.Current.MainPage.DisplayAlert("Taxes y Otros", Text_General_Error, "Ok");
+            }
+           
+
+        }
+
+        private string ofuscatePhone(string phone)
+        {
+            if (phone.Length == 1)
+            {
+                return "####";
+            }
+            else
+            {
+                  var new_phone = "";
+                  var substringNum = phone.Length > 3 ? 3 : phone.Length - 1;
+
+                for (int i = 0; i < phone.Length - substringNum; i++) {
+                  new_phone += "#";
+                }
+
+                return (new_phone + phone.Substring(phone.Length - substringNum)).Trim();
+            }
         }
         #endregion
         #region Private properties  
@@ -56,14 +145,21 @@ namespace TaxesYOtros.ViewModels
         private ValidatableObject<string> ssn;
         private ValidatableObject<DateTime?> dob;
         private ValidatableObject<string> ocupation;
-        private ValidatableObject<int?> phone;
+        private ValidatableObject<string> phone;
         private ValidatableObject<string> phoneCarrier;
+        private ValidatableObject<PickerItem> maritalStatus;
+        private ValidatableObject<PickerItem> hasDependents;
+        private List<PickerItem> listMaritalStatus;
+        private List<PickerItem> yesNoList;
+
 
         private string firstNameError;
         private string lastNameError;
         private string emailError;
         private string sufixError;
         private string ssnError;
+        private string hasDependentsError;
+        private string maritalStatusError;
         private string dobError;
         private string ocupationError;
         private string phoneError;
@@ -75,13 +171,36 @@ namespace TaxesYOtros.ViewModels
         #endregion
 
         #region Public properties
-
+        public List<PickerItem> ListMaritalStatus
+        {
+            get => listMaritalStatus;
+            set => SetProperty(ref listMaritalStatus, value);
+        }
+        public List<PickerItem> YesNoList
+        {
+            get => yesNoList;
+            set => SetProperty(ref yesNoList, value);
+        }
+        
 
         public ValidatableObject<string> FirstName
         {
             get => firstName;
             set => SetProperty(ref firstName, value);
         }
+        public ValidatableObject<PickerItem> MaritalStatus
+        {
+            get => maritalStatus;
+            set => SetProperty(ref maritalStatus, value);
+        }
+
+        public ValidatableObject<PickerItem> HasDependents
+        {
+            get => hasDependents;
+            set => SetProperty(ref hasDependents, value);
+        }
+        
+
         public ValidatableObject<string> Email
         {
             get => email;
@@ -113,7 +232,7 @@ namespace TaxesYOtros.ViewModels
             set => SetProperty(ref ocupation, value);
         }
 
-        public ValidatableObject<int?> Phone
+        public ValidatableObject<string> Phone
         {
             get => phone;
             set => SetProperty(ref phone, value);
@@ -159,6 +278,20 @@ namespace TaxesYOtros.ViewModels
             get => ssnError;
             set => SetProperty(ref ssnError, value);
         }
+
+        public string MaritalStatusError
+        {
+            get => maritalStatusError;
+            set => SetProperty(ref maritalStatusError, value);
+        }
+
+        public string HasDependentsError
+        {
+            get => hasDependentsError;
+            set => SetProperty(ref hasDependentsError, value);
+        }
+
+        
         public string DOBError
         {
             get => dobError;
@@ -186,6 +319,18 @@ namespace TaxesYOtros.ViewModels
 
 
         #region Commands
+        public ICommand MaritalStatusCommand => new Command(() =>
+        {
+            MaritalStatusError = !MaritalStatus.HasValidData() ? MaritalStatus.Errors.FirstOrDefault() : "";
+        });
+
+        public ICommand HasDependentsCommand => new Command(() =>
+        {
+            hasDependentsError = !HasDependents.HasValidData() ? HasDependents.Errors.FirstOrDefault() : "";
+        });
+
+        
+
         public ICommand ValidateFirstNameCodeCommand => new Command(() =>
         {
             FirstNameError = !firstName.HasValidData() ? firstName.Errors.FirstOrDefault() : "";
@@ -268,7 +413,7 @@ namespace TaxesYOtros.ViewModels
                 ValidationMessage = Text_SSN_Is_Required
             });
 
-            phone.Validations.Add(new IsValidNumberRule<int?>
+            phone.Validations.Add(new IsValidNumberRule<string>
             {
                 ValidationMessage = Text_Phone_Must_Be_Numbers
             });
@@ -285,8 +430,15 @@ namespace TaxesYOtros.ViewModels
                 ValidationMessage = Text_DOB_Is_Required
             });
            
-           
+            maritalStatus.Validations.Add(new IsNotNullOrEmptyRule<PickerItem>
+            {
+                ValidationMessage = Text_MaritalStatus_Is_Required
+            });
 
+            hasDependents.Validations.Add(new IsNotNullOrEmptyRule<PickerItem>
+            {
+                ValidationMessage = Text_GENERIC_REQUIRED_TEXT
+            });
         }
         private bool Validate()
         {
@@ -349,9 +501,19 @@ namespace TaxesYOtros.ViewModels
                 PhoneCarrierError = !phoneCarrier.HasValidData() ? phoneCarrier.Errors.FirstOrDefault() : "";
             }
 
+            bool isValidMaritalStatus = maritalStatus.HasValidData();
+            if (!isValidMaritalStatus)
+            {
+                MaritalStatusError = !maritalStatus.HasValidData() ? maritalStatus.Errors.FirstOrDefault() : "";
+            }
 
+            bool isValidHasDependents = HasDependents.HasValidData();
+            if (!isValidHasDependents)
+            {
+                HasDependentsError = !HasDependents.HasValidData() ? HasDependents.Errors.FirstOrDefault() : "";
+            }
 
-            return isValidPhone && isValidPhoneCarrier && isValidEmail && isValidFirstName && isValidLastName && isValidSufix && isValidSSN && isValidDOB && isValidOcupation;
+            return isValidHasDependents && isValidMaritalStatus && isValidPhone && isValidPhoneCarrier && isValidEmail && isValidFirstName && isValidLastName && isValidSufix && isValidSSN && isValidDOB && isValidOcupation;
 
         }
 
@@ -364,50 +526,13 @@ namespace TaxesYOtros.ViewModels
                 {
 
                     await App.Current.MainPage.DisplayAlert("Taxes y Otros", Text_Saved, "Ok");
-                    //RegistrationResponse response = await userService.RegisterAsync(email.Value, firstName.Value, lastName.Value, sufix.Value, ssn.Value, dob.Value, ocupation.Value
+                    
+                    
+                    //load user data
+                    await LoadUserData(true);
+                    Application.Current.MainPage = new AppShell();
+                    await Shell.Current.GoToAsync($"//{nameof(AboutPage)}");
 
-                    //    );
-
-                    //if (response.message == "OK")
-                    //{
-
-                    //    await App.Current.MainPage.DisplayAlert("Taxes y Otros", Text_Successfullty_Registered, "Ok");
-                    //    App.Current.MainPage = new LoginPage();
-
-                    //}
-                    //else if (response.message == "VALIDATION_ERRORS")
-                    //{
-                    //    if (response.errors != null)
-                    //    {
-                    //        PropertyInfo[] myPropertyInfo;
-                    //        // Get the properties of 'Type' class object.
-                    //        myPropertyInfo = (response.errors.GetType()).GetProperties();
-                    //        for (int i = 0; i < myPropertyInfo.Length; i++)
-                    //        {
-                    //            var PropValue = response.errors.GetType().GetProperty(myPropertyInfo[i].Name).GetValue(response.errors, null);
-
-                    //            if (PropValue != null)
-                    //            {
-                    //                await App.Current.MainPage.DisplayAlert("Taxes y Otros", PropValue?.ToString(), "Ok");
-                    //                break;
-                    //            }
-
-                    //        }
-                    //    }
-                    //    else
-                    //    {
-                    //        SavingError = Text_Form_Is_Not_Complete;
-                    //    }
-                    //}
-                    //else if (response.message == "EMAIL_ALREADY_EXIST")
-                    //{
-                    //    SavingError = Text_Email_Is_Already_Registered;
-
-                    //}
-                    //else
-                    //{
-                    //    SavingError = Text_General_Error;
-                    //}
                 }
             });
 
@@ -453,8 +578,17 @@ namespace TaxesYOtros.ViewModels
 
         public string Text_Saved { get { return GetLocalizedText(LanguageToken.TAXPAYER28, "Su información has sido guardada exitosamente"); } }
 
+        public string Text_MaritalStatus { get { return GetLocalizedText(LanguageToken.TAXPAYER29, "Estado Civil"); } }
 
-        public string Text_Save { get { return GetLocalizedText(LanguageToken.SAVE, "Guardar"); } }
+        public string Text_Single { get { return GetLocalizedText(LanguageToken.TAXPAYER30, "Single"); } }
+        public string Text_Married { get { return GetLocalizedText(LanguageToken.TAXPAYER31, "Married"); } }
+        public string Text_HasDependents { get { return GetLocalizedText(LanguageToken.TAXPAYER33, "Tiene personas a cargo?"); } }
+
+        public string Text_MaritalStatus_Is_Required{ get { return GetLocalizedText(LanguageToken.TAXPAYER32, "El estado civil es requerido");
+
+            }
+}
+public string Text_Save { get { return GetLocalizedText(LanguageToken.SAVE, "Guardar"); } }
 
         #endregion
 

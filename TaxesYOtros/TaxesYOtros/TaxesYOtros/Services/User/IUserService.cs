@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,6 @@ namespace TaxesYOtros.Services.User
         Task<ServiceStatusResponse> ForgotPasswordAsync(string value);
         Task<ServiceStatusResponse> ResetPasswordAsync(string username, string password, string token);
         Task<RegistrationResponse> RegisterAsync(string value1, string value2, string value3, string value4, string value5, string value6, string value7);
- 
+        Task<JObject> GetUser( string token, string session_id);
     }
 }

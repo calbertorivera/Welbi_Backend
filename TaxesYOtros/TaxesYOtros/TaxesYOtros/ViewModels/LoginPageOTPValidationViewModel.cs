@@ -124,7 +124,11 @@ namespace TaxesYOtros.ViewModels
 
                     if (response.message == "OK")
                     {
+                        await Xamarin.Essentials.SecureStorage.SetAsync("LoggedInEmail", Email);
+                        await Xamarin.Essentials.SecureStorage.SetAsync("token", response.token);
+                        await Xamarin.Essentials.SecureStorage.SetAsync("user_id", response.user_id);
                         await Xamarin.Essentials.SecureStorage.SetAsync("isLogged", "1");
+                        await LoadUserData(true);
                         Application.Current.MainPage = new AppShell();
                         await Shell.Current.GoToAsync($"//{nameof(AboutPage)}");
                     }

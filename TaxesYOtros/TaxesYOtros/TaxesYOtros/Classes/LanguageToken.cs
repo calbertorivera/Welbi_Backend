@@ -134,6 +134,15 @@ namespace Configuration
         AMIDONE,
         SAVE,
         TAXPAYER28,
+        TAXPAYER29,
+        SELECT,
+        TAXPAYER30,
+        TAXPAYER31,
+        TAXPAYER32,
+        YES,
+        NO,
+        GENERIC_REQUIRED_TEXT,
+        TAXPAYER33,
     }
 
 

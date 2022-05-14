@@ -6,7 +6,6 @@ namespace TaxesYOtros.Models.Responses
 {
     public class LoginResponse : ServiceStatusResponse
     {
-       
-    
+  
     }
 }

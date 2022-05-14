@@ -9,6 +9,7 @@ using TaxesYOtros.Classes;
 using TaxesYOtros.Models;
 using TaxesYOtros.Services;
 using TaxesYOtros.Services.Texts;
+using TaxesYOtros.Services.User;
 using Xamarin.Forms;
 
 namespace TaxesYOtros.ViewModels
@@ -16,10 +17,13 @@ namespace TaxesYOtros.ViewModels
     public class BaseViewModel : ExtendedBindableObject, INotifyPropertyChanged
     {
         public ITextService textsService;
+        public IUserService userService;
+        private JObject userData;
         public BaseViewModel(string trackPrefix = null)
             : base(trackPrefix)
         {
             this.textsService = DependencyService.Get<ITextService>();
+            this.userService = DependencyService.Get<IUserService>();
         }
 
         public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
@@ -38,6 +42,59 @@ namespace TaxesYOtros.ViewModels
             set { SetProperty(ref title, value); }
         }
 
+        public JObject UserData
+        {
+            get
+            {
+                if (Xamarin.Essentials.SecureStorage.GetAsync("data").Result != null)
+                {
+                    return JObject.Parse(Xamarin.Essentials.SecureStorage.GetAsync("data").Result);
+                }
+                else { return null; }
+            }
+            set
+            {
+                if (value != null)
+                {
+                    Xamarin.Essentials.SecureStorage.SetAsync("data", value.ToString());
+                }
+                else
+                {
+                    Xamarin.Essentials.SecureStorage.SetAsync("data", null);
+                }
+            }
+        }
+
+        public async Task<bool> LoadUserData(bool forceRefresh = false)
+        {
+
+            var token = Xamarin.Essentials.SecureStorage.GetAsync("token").Result;
+            var sessionId = Xamarin.Essentials.SecureStorage.GetAsync("user_id").Result;
+
+            if (forceRefresh || UserData == null)
+            {
+                var Data = await userService.GetUser(token, sessionId);
+
+                if (Data != null)
+                {
+                    UserData = Data;
+                }
+
+            }
+            else if (UserData == null)
+            {
+                var Data = await userService.GetUser(token, sessionId);
+
+                if (Data != null)
+                {
+                    UserData = Data;
+                }
+            }
+
+            return true;
+        }
+
+
         protected bool SetProperty<T>(ref T backingStore, T value,
             [CallerMemberName] string propertyName = "",
             Action onChanged = null)
@@ -51,6 +108,12 @@ namespace TaxesYOtros.ViewModels
             return true;
         }
 
+        #region Protected Methods
+
+
+
+        #endregion
+
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
@@ -62,7 +125,7 @@ namespace TaxesYOtros.ViewModels
             changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
-        public  static string GetLocalizedTextStatic(LanguageToken token, string defaultText)
+        public static string GetLocalizedTextStatic(LanguageToken token, string defaultText)
         {
             var lan = Xamarin.Essentials.SecureStorage.GetAsync("lan").Result;
             if (lan != null)
@@ -90,7 +153,7 @@ namespace TaxesYOtros.ViewModels
         public string GetLocalizedText(LanguageToken token, string defaultText)
         {
 
-              return GetLocalizedTextStatic(token, defaultText);
+            return GetLocalizedTextStatic(token, defaultText);
 
         }
 
@@ -170,6 +233,19 @@ namespace TaxesYOtros.ViewModels
                 return GetLocalizedText(LanguageToken.SECTION6, "Documentos");
             }
         }
+
+        public string Text_Select { get { return GetLocalizedText(LanguageToken.SELECT, "--Seleccione--"); } }
+
+        public string Text_YES { get { return GetLocalizedText(LanguageToken.YES, "Sí"); } }
+        public string Text_NO { get { return GetLocalizedText(LanguageToken.NO, "No"); } }
+        public string Text_GENERIC_REQUIRED_TEXT
+        {
+            get
+            {
+                return GetLocalizedText(LanguageToken.GENERIC_REQUIRED_TEXT, "Este campo/pregunta es requerido");
+            }
+        }
+
         #endregion
 
     }
